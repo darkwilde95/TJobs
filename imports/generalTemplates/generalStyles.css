@@ -1,7 +1,7 @@
 :root{
-  --main-color: #1565c0;
-  --light-main-color: #5e92f3;
-  --dark-main-color: #003c8f;
+  --main-color: #00695c;
+  --light-main-color: #439889;
+  --dark-main-color: #003d33;
 }
 
 body {
@@ -13,8 +13,19 @@ div.nav-content ul li {
   width: 25%;
 }
 
+div.collection a i {
+  vertical-align: middle;
+}
+
 .content {
   margin-top: 80px;
+}
+
+th, td {
+  padding: 8px 0px;
+}
+td span.truncate {
+  width: 112px !important;
 }
 
 .input-field label {
