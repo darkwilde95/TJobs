@@ -1,0 +1,35 @@
+:root{
+  --main-color: #1565c0;
+  --light-main-color: #5e92f3;
+  --dark-main-color: #003c8f;
+}
+
+body {
+  background-color: #f5f5f5;
+}
+
+div.nav-content ul li {
+  text-align: center;
+  width: 25%;
+}
+
+.content {
+  margin-top: 80px;
+}
+
+.input-field label {
+  color: var(--main-color) !important;
+}
+
+.input-field input:focus + label {
+  color: var(--main-color) !important;
+}
+
+.input-field input:focus {
+  border-bottom: 1px solid var(--main-color) !important;
+  box-shadow: 0 1px 0 0 var(--main-color) !important;
+}
+
+.dropdown-content li > span {
+  color: var(--main-color) !important;
+}

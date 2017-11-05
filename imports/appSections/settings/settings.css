@@ -1,0 +1,13 @@
+#space {
+  align-content: center;
+  width: 100%;
+}
+
+#deleteProfileButton{
+  color: red;
+  padding: 8px;
+}
+
+#logoutButton{
+  padding: 8px;
+}

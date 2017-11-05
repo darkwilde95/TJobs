@@ -1,0 +1,49 @@
+<template name="register">
+  <header>
+    <div style="text-align: center;" class="blue-text text-darken-2">
+      <h1>TJobs</h1>
+    </div>
+  </header>
+  <main>
+    <div style="text-align: center;" class="row">
+      <form class="col s12" method="post">
+        <div class="input-field col s12">
+          <input type="text" class="validate" id="register_name">
+          <label for="register_name">Nombre(s)</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="text" class="validate" id="register_lastName1">
+          <label for="register_lastName1">Primer apellido</label>
+        </div>
+        <div class="input-field col s6">
+          <input type="text" class="validate" id="register_lastName2">
+          <label for="register_lastName2">Segundo Apellido</label>
+        </div>
+        <div class="input-field col s12">
+          <input type="email" class="validate" id="register_email">
+          <label for="register_email">Email</label>
+        </div>
+        <div class="input-field col s12">
+          <input type="password" class="validate" id="register_password">
+          <label for="register_password">Contraseña</label>
+        </div>
+        <div class="input-field col s12">
+          <input type="password" class="validate" id="register_password2">
+          <label for="register_password2">Verificar contraseña</label>
+        </div>
+        <div id="divSelect" class="input-field col s12 blue-text text-darken-2">
+          <select id="register_gender" class="blue-text text-darken-2">
+            <option value="" disabled selected>Elegir un genero</option>
+            <option value="M">Masculino</option>
+            <option value="F">Femenino</option>
+            <option value="O">Otro</option>
+            <label>Elegir un genero</label>
+          </select>
+        </div>
+        <div class="input-field col s12">
+          <button class="btn waves-effect waves-light blue darken-2">Registrar</button>
+        </div>
+      </form>
+    </div>
+  </main>
+</template>
