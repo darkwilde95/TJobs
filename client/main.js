@@ -1,1 +1,1 @@
-import '/imports/appSections'
+import '/imports/appSections/routes'

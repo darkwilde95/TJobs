@@ -22,3 +22,5 @@ jquery
 materialize:materialize
 iron:router
 accounts-password
+aldeed:simple-schema
+aldeed:collection2

@@ -1,0 +1,38 @@
+<template name="registerEnterprise">
+  <div style="text-align: center;" class="row">
+    <form class="col s12" method="post">
+      <div class="input-field col s12">
+        <input type="text" class="validate" id="registerE_name">
+        <label for="registerE_name">Nombre de la empresa</label>
+      </div>
+      <div class="input-field col s6 teal-text text-darken-3">
+        <select class="teal-text text-darken-3" id="registerE_location">
+          <option value="" disabled selected>Elegir una Ciudad</option>
+          {{#each city}}
+            <option value="{{cit_name}}">{{cit_name}}</option>
+          {{/each}}
+          <label>Elegir una Ciudad</label>
+        </select>
+      </div>
+      <div class="input-field col s6">
+        <input type="number" class="validate" id="registerE_number">
+        <label for="registerE_number">Número de teléfono</label>
+      </div>
+      <div class="input-field col s12">
+        <input type="email" class="validate" id="registerE_email">
+        <label for="registerE_email">Email</label>
+      </div>
+      <div class="input-field col s12">
+        <input type="password" class="validate" id="registerE_password">
+        <label for="registerE_password">Contraseña</label>
+      </div>
+      <div class="input-field col s12">
+        <input type="password" class="validate" id="registerE_password2">
+        <label for="registerE_password2">Verificar contraseña</label>
+      </div>
+      <div class="input-field col s12">
+        <button class="btn waves-effect waves-light teal darken-3" id="registerE_submit">Registrar</button>
+      </div>
+    </form>
+  </div>
+</template>

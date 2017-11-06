@@ -7,7 +7,7 @@
   </header>
   <main>
     <div style="text-align: center;" class="row">
-      <form class="col s12" method="post">
+      <form class="col s12" action="#" method="post">
         <div class="input-field col s12">
           <input type="email" class="validate" id="login_email">
           <label for="login_email">Email</label>
@@ -17,7 +17,7 @@
           <label for="login_password">Contraseña</label>
         </div>
         <div class="input-field col s12">
-          <button class="btn waves-effect waves-light teal darken-3">Ingresar</button>
+          <button class="btn waves-effect waves-light teal darken-3" id="login_submit">Ingresar</button>
         </div>
       </form>
     </div>
@@ -29,7 +29,7 @@
         <div class="col s12">
           <span>¿No tienes una cuenta?</span>
           <br>
-          <a style="color: var(--light-main-color);" href="{{pathFor 'register'}}">Crea una cuenta</a>
+          <a style="color: var(--light-main-color);" href="{{pathFor 'registerActivity'}}">Crea una cuenta</a>
         </div>
       </div>
     </div>

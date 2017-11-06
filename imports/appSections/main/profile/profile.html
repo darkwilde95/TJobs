@@ -2,7 +2,7 @@
   <div style="text-align: center;">
     <img class="circle" style="width: 150px; height: 150px; overflow: hidden;" src="/noImageProfile.svg">
     <br>
-    <h4>Raúl Felipe Coral</h4>
+    <h4>{{currentUser.profile.name.name}} {{currentUser.profile.name.firstLastName}}</h4>
   </div>
   <ul class="collection with-header">
     <li class="collection-header"><h5>Datos Personales</h5></li>
@@ -12,22 +12,22 @@
           <table class="table">
             <tbody>
               <tr>
-                <th>Nombre(s):</th><td><span class="truncate">Raul Felipe</span></td>
+                <th>Nombre(s):</th><td><span class="truncate">{{currentUser.profile.name.name}}</span></td>
               </tr>
               <tr>
-                <th>Primer apellido:</th><td><span class="truncate">Coral</span></td>
+                <th>Primer apellido:</th><td><span class="truncate">{{currentUser.profile.name.firstLastName}}</span></td>
               </tr>
               <tr>
-                <th>Segundo apellido:</th><td><span class="truncate">Jiménez</span></td>
+                <th>Segundo apellido:</th><td><span class="truncate">{{currentUser.profile.name.secondLastName}}</span></td>
               </tr>
               <tr>
-                <th>Ciudad de residencia:</th><td><span class="truncate">Bogotá</span></td>
+                <th>Ciudad de residencia:</th><td><span class="truncate">{{currentUser.profile.location}}</span></td>
               </tr>
               <tr>
-                <th>Contacto:</th><td><span class="truncate">3004984957</span></td>
+                <th>Contacto:</th><td><span class="truncate">{{currentUser.profile.number}}</span></td>
               </tr>
               <tr>
-                <th>e-mail:</th><td><span class="truncate">darkwilde95@outlook.com</span></td>
+                <th>e-mail:</th><td><span class="truncate">{{currentUser.emails.[0].address}}</span></td>
               </tr>
             </tbody>
           </table>
@@ -38,14 +38,24 @@
   <br>
   <ul class="collection with-header">
     <li class="collection-header"><h5>Estudios</h5></li>
-    <li class="collection-item">{{> studyRegisterTemplate}}</li>
-    <li class="collection-item">{{> studyRegisterTemplate}}</li>
+    {{#if hasStudies}}
+      {{#each currentUser.studies}}
+        <li class="collection-item">{{> studyRegisterTemplate}}</li>
+      {{/each}}
+    {{else}}
+      <li class="collection-item">No hay estudios registrados.</li>
+    {{/if}}
   </ul>
   <br>
   <ul class="collection with-header">
     <li class="collection-header"><h5>Experiencia Laboral</h5></li>
-    <li class="collection-item">{{> jobRegisterTemplate}}</li>
-    <li class="collection-item">{{> jobRegisterTemplate}}</li>
+    {{#if hasJobs}}
+      {{#each currentUser.jobs}}
+        <li class="collection-item">{{> jobRegisterTemplate}}</li>
+      {{/each}}
+    {{else}}
+      <li class="collection-item">No hay trabajos registrados</li>
+    {{/if}}
   </ul>
 </template>
 

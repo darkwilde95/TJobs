@@ -5,45 +5,16 @@
     </div>
   </header>
   <main>
-    <div style="text-align: center;" class="row">
-      <form class="col s12" method="post">
-        <div class="input-field col s12">
-          <input type="text" class="validate" id="register_name">
-          <label for="register_name">Nombre(s)</label>
-        </div>
-        <div class="input-field col s6">
-          <input type="text" class="validate" id="register_lastName1">
-          <label for="register_lastName1">Primer apellido</label>
-        </div>
-        <div class="input-field col s6">
-          <input type="text" class="validate" id="register_lastName2">
-          <label for="register_lastName2">Segundo Apellido</label>
-        </div>
-        <div class="input-field col s12">
-          <input type="email" class="validate" id="register_email">
-          <label for="register_email">Email</label>
-        </div>
-        <div class="input-field col s12">
-          <input type="password" class="validate" id="register_password">
-          <label for="register_password">Contraseña</label>
-        </div>
-        <div class="input-field col s12">
-          <input type="password" class="validate" id="register_password2">
-          <label for="register_password2">Verificar contraseña</label>
-        </div>
-        <div id="divSelect" class="input-field col s12 teal-text text-darken-3">
-          <select id="register_gender" class="teal-text text-darken-3">
-            <option value="" disabled selected>Elegir un genero</option>
-            <option value="M">Masculino</option>
-            <option value="F">Femenino</option>
-            <option value="O">Otro</option>
-            <label>Elegir un genero</label>
-          </select>
-        </div>
-        <div class="input-field col s12">
-          <button class="btn waves-effect waves-light teal darken-3">Registrar</button>
-        </div>
-      </form>
+    <ul class="tabs">
+      <li class="tab" style="background-color: var(--background-color)"><a href="#forUser" class="teal-text text-darken-3">¿Buscas Empleo?</a></li>
+      <li class="tab" style="background-color: var(--background-color)"><a  href="#forEnterprise" class="teal-text text-darken-3">¿Buscas Emplear?</a></li>
+    </ul>
+    <br>
+    <div id="forUser" style="width: 100%;">
+      {{ >registerUser city=city}}
+    </div>
+    <div id="forEnterprise" style="width: 100%;">
+      {{ >registerEnterprise city=city}}
     </div>
   </main>
 </template>

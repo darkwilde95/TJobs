@@ -1,0 +1,56 @@
+<template name="registerUser">
+  <div style="text-align: center;" class="row">
+    <form class="col s12" method="post">
+      <div class="input-field col s12">
+        <input type="text" class="validate" id="registerU_name">
+        <label for="registerU_name">Nombre(s)</label>
+      </div>
+      <div class="input-field col s6">
+        <input type="text" class="validate" id="registerU_lastName1">
+        <label for="registerU_lastName1">Primer apellido</label>
+      </div>
+      <div class="input-field col s6">
+        <input type="text" class="validate" id="registerU_lastName2">
+        <label for="registerU_lastName2">Segundo Apellido</label>
+      </div>
+      <div class="input-field col s6 teal-text text-darken-3">
+        <select class="teal-text text-darken-3" id="registerU_location">
+          <option value="" disabled selected>Elegir una ciudad</option>
+          <!-- {{reload city}} -->
+          {{#each city}}
+            <option value="{{cit_name}}">{{cit_name}}</option>
+          {{/each}}
+          <label>Elegir una ciudad</label>
+        </select>
+      </div>
+      <div class="input-field col s6">
+        <input type="number" class="validate" id="registerU_number">
+        <label for="registerU_number">Número de teléfono</label>
+      </div>
+      <div class="input-field col s12 teal-text text-darken-3">
+        <select class="teal-text text-darken-3" id="registerU_gender">
+          <option value="" disabled selected>Elegir un genero</option>
+          <option value="M">Masculino</option>
+          <option value="F">Femenino</option>
+          <option value="O">Otro</option>
+          <label>Elegir un genero</label>
+        </select>
+      </div>
+      <div class="input-field col s12">
+        <input type="email" class="validate" id="registerU_email">
+        <label for="registerU_email">Email</label>
+      </div>
+      <div class="input-field col s12">
+        <input type="password" class="validate" id="registerU_password">
+        <label for="registerU_password">Contraseña</label>
+      </div>
+      <div class="input-field col s12">
+        <input type="password" class="validate" id="registerU_password2">
+        <label for="registerU_password2">Verificar contraseña</label>
+      </div>
+      <div class="input-field col s12">
+        <button class="btn waves-effect waves-light teal darken-3" id="registerU_submit">Registrar</button>
+      </div>
+    </form>
+  </div>
+</template>
