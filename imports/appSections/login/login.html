@@ -1,37 +1,41 @@
 <template name="login">
-  <header>
-    <div style="text-align: center;" class="teal-text text-darken-3 row">
-      <br>
-      <h1>TJobs</h1>
-    </div>
-  </header>
-  <main>
-    <div style="text-align: center;" class="row">
-      <form class="col s12" action="#" method="post">
-        <div class="input-field col s12">
-          <input type="email" class="validate" id="login_email">
-          <label for="login_email">Email</label>
-        </div>
-        <div class="input-field col s12">
-          <input type="password" class="validate" id="login_password">
-          <label for="login_password">Contraseña</label>
-        </div>
-        <div class="input-field col s12">
-          <button class="btn waves-effect waves-light teal darken-3" id="login_submit">Ingresar</button>
-        </div>
-      </form>
-    </div>
-  </main>
-  <footer class="page-footer grey lighten-4 black-text" style="text-align: center;">
-    <div class="container">
-      <br><br>
-      <div class="row">
-        <div class="col s12">
-          <span>¿No tienes una cuenta?</span>
-          <br>
-          <a style="color: var(--light-main-color);" href="{{pathFor 'registerActivity'}}">Crea una cuenta</a>
+  {{#if loggingIn }}
+    {{ >loading}}
+  {{else}}
+    <header>
+      <div style="text-align: center;" class="teal-text text-darken-3 row">
+        <br>
+        <h1>TJobs</h1>
+      </div>
+    </header>
+    <main>
+      <div style="text-align: center;" class="row">
+        <form class="col s12" action="#" method="post">
+          <div class="input-field col s12">
+            <input type="email" class="validate" id="login_email">
+            <label for="login_email">Email</label>
+          </div>
+          <div class="input-field col s12">
+            <input type="password" class="validate" id="login_password">
+            <label for="login_password">Contraseña</label>
+          </div>
+          <div class="input-field col s12">
+            <button class="btn waves-effect waves-light teal darken-3" id="login_submit">Ingresar</button>
+          </div>
+        </form>
+      </div>
+    </main>
+    <footer class="page-footer grey lighten-4 black-text" style="text-align: center;">
+      <div class="container">
+        <br><br>
+        <div class="row">
+          <div class="col s12">
+            <span>¿No tienes una cuenta?</span>
+            <br>
+            <a style="color: var(--light-main-color);" href="{{pathFor 'registerActivity'}}">Crea una cuenta</a>
+          </div>
         </div>
       </div>
-    </div>
-  </footer>
+    </footer>
+  {{/if}}
 </template>

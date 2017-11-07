@@ -10,7 +10,8 @@ Template.login.events({
     var email = $('#login_email').val()
     var password = $('#login_password').val()
     Meteor.loginWithPassword(email, password)
-    Router.go('mainActivity')
+    if(Meteor.userId()){
+        Router.go('mainActivity')
+    }
   }
-
 })
