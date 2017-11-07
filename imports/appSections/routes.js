@@ -5,13 +5,27 @@ import './main/main'
 import './styles.css'
 import './generalTemplates'
 
-Router.route('/', function(){
-  this.redirect('loginActivity')
+
+Router.route('/', {
+  onBeforeAction: function(){
+    if(!Meteor.userId()){
+      this.redirect('loginActivity')
+    }else{
+      this.redirect('mainActivity')
+    }
+    this.next()
+  }
 })
 
 Router.route('/login',{
   name: 'loginActivity',
-  template: 'login'
+  template: 'login',
+  onBeforeAction: function(){
+    if(Meteor.userId()){
+      this.redirect('mainActivity')
+    }
+    this.next()
+  }
 })
 
 Router.route('/register',{
@@ -22,10 +36,36 @@ Router.route('/register',{
   },
   data: function() {
     return {'city': City.find({})}
+  },
+  action: function(){
+    if (this.ready()) {
+      this.render()
+    } else {
+      this.render('loading')
+    }
   }
 })
 
 Router.route('/main', {
   name: 'mainActivity',
-  template: 'main'
+  template: 'main',
+  subscriptions: function(){
+    this.subscribe('City').wait()
+  },
+  data: function() {
+    return {'city': City.find({})}
+  },
+  onBeforeAction: function(){
+    if(!Meteor.userId()){
+      this.redirect('loginActivity')
+    }
+    this.next()
+  },
+  action: function(){
+    if (this.ready()) {
+      this.render()
+    } else {
+      this.render('loading')
+    }
+  }
 })
