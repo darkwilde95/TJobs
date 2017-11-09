@@ -1,0 +1,88 @@
+:root{
+  --primary-color: #212121;
+  --light-primary-color: #484848;
+  --dark-primary-color: #000000;
+  --secundary-color: #ff6f00;
+  --background-color: #f5f5f5;
+}
+
+// @font-face {
+//   font-family: fontName;
+//   src: url("/fonts/font.otf/ttf");
+// }
+
+.primary-color {
+  background-color: var(--primary-color);
+}
+
+.light-primary-color {
+  background-color: var(--light-primary-color);
+}
+
+.dark-primary-color {
+  background-color: var(--dark-primary-color);
+}
+
+.secundary-color {
+  background-color: var(--secundary-color);
+}
+
+.background-app-color {
+  background-color: var(--background-color);
+}
+
+body {
+  @extend .background-app-color;
+}
+
+.appName {
+  margin: 0px;
+  padding-top: 29.4px;
+  padding-bottom: 23.52px;
+  background-color: var(--primary-color);
+}
+
+div.nav-content ul li {
+  text-align: center;
+  width: 25%;
+}
+
+div.collection a i {
+  vertical-align: middle;
+}
+
+.content {
+  margin-top: 80px;
+}
+
+th, td {
+  padding: 8px 0px;
+}
+td span.truncate {
+  width: 112px !important;
+}
+
+.input-field label {
+  color: var(--secundary-color) !important;
+}
+
+.input-field input:focus + label {
+  color: var(--secundary-color) !important;
+}
+
+.input-field input:focus {
+  border-bottom: 1px solid var(--secundary-color) !important;
+  box-shadow: 0 1px 0 0 var(--secundary-color) !important;
+}
+
+.tabs .indicator {
+  background-color: var(--secundary-color) !important;
+}
+
+.dropdown-content li > span {
+  color: var(--main-color) !important;
+}
+
+.spinner-yellow, .spinner-yellow-only {
+  border-color: var(--secundary-color);
+}

@@ -1,5 +1,6 @@
 import { Template } from 'meteor/templating'
 import { Meteor } from 'meteor/meteor'
+import { Tracker } from 'meteor/tracker'
 
 import './main.html'
 import './home/home'
@@ -16,7 +17,17 @@ Template.main.onCreated(function(){
 })
 
 Template.main.helpers({
-  chooseProfile: function(){
+  chooseType: function(){
     return Meteor.user().profile.typeProfile == 'user'
+  }
+})
+
+Template.main.onRendered(function(){
+  if(Meteor.user().profile.typeProfile == 'user'){
+    $('#publishOffer').css('display', 'none')
+    $('#enterpriseProfile').css('display', 'none')
+  }else{
+    $('#search').css('display', 'none')
+    $('#userProfile').css('display', 'none')
   }
 })
