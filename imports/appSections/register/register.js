@@ -17,5 +17,6 @@ Tracker.autorun(function(){
 Template.register.onCreated(function(){
   $(document).ready(function(){
     $('ul.tabs').tabs()
+    $('select').material_select()
   })
 })

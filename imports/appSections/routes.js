@@ -37,6 +37,12 @@ Router.route('/register',{
   data: function() {
     return {'city': City.find({})}
   },
+  onBeforeAction: function(){
+    if(Meteor.userId()){
+      this.redirect('mainActivity')
+    }
+    this.next()
+  },
   action: function(){
     if (this.ready()) {
       this.render()
