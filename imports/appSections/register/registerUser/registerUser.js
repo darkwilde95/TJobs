@@ -21,6 +21,7 @@ Template.registerUser.events({
         email: userEmail,
         password: password1,
         profile: {
+          typeProfile: 'user',
           name:{
             name: userName,
             firstLastName: userLastName1,

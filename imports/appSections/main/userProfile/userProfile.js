@@ -1,9 +1,9 @@
 import { Template } from 'meteor/templating'
 import { City } from '/imports/db/city'
 
-import './profile.html'
+import './userProfile.html'
 
-Template.profile.helpers({
+Template.userProfile.helpers({
   userLocationHelper: function(){
     return City.findOne({_id: Meteor.user().profile.location}).cit_name
   },

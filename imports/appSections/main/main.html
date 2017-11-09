@@ -8,8 +8,13 @@
         <div class="nav-content">
           <ul class="tabs tabs-transparent" id="main_tabs">
             <li class="tab teal darken-2"><a href="#home"><i class="material-icons" >home</i></a></li>
-            <li class="tab teal darken-2"><a href="#search"><i class="material-icons">search</i></a></li>
-            <li class="tab teal darken-2"><a href="#profile"><i class="material-icons">person</i></a></li>
+            {{#if chooseType}}
+              <li class="tab teal darken-2"><a href="#search"><i class="material-icons">search</i></a></li>
+              <li class="tab teal darken-2"><a href="#userProfile"><i class="material-icons">person</i></a></li>
+            {{else}}
+              <li class="tab teal darken-2"><a href="#publishOffer"><i class="material-icons">publish</i></a></li>
+              <li class="tab teal darken-2"><a href="#enterpriseProfile"><i class="material-icons">business</i></a></li><!--location_city-->
+            {{/if}}
             <li class="tab teal darken-2"><a href="#settings"><i class="material-icons">settings</i></a></li>
           </ul>
         </div>
@@ -24,8 +29,14 @@
       <div id="search">
         {{ >search }}
       </div>
-      <div id="profile">
-        {{ >profile }}
+      <div id="publishOffer">
+        {{ >publishOffer }}
+      </div>
+      <div id="userProfile">
+        {{ >userProfile }}
+      </div>
+      <div id="enterpriseProfile">
+        {{ >enterpriseProfile }}
       </div>
       <div id="settings">
         {{ >settings }}
