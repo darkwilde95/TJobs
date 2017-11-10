@@ -1,3 +1,4 @@
+import { JobOffer } from '/imports/db/jobOffer'
 import { City } from '/imports/db/city'
 import './login/login'
 import './register/register'
@@ -56,9 +57,13 @@ Router.route('/main', {
   template: 'main',
   subscriptions: function(){
     this.subscribe('City').wait()
+    this.subscribe('JobOffer').wait()
   },
   data: function() {
-    return {'city': City.find({})}
+    return {
+      'city': City.find({}),
+      'jobOffers': JobOffer.find({})
+    }
   },
   onBeforeAction: function(){
     if(!Meteor.userId()){

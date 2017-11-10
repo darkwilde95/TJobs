@@ -16,6 +16,11 @@ Template.settings.events({
 
   'click #settings_deleteProfile'(event){
     event.preventDefault()
-    console.log("En construcción")
+    Meteor.call('deleteProfile')
+    Tracker.autorun(function(){
+      if(!Meteor.userId()){
+        Router.go('loginActivity')
+      }
+    })
   }
 })

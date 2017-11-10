@@ -3,11 +3,11 @@
     <div class="col s12">
       <div class="card">
         <div class="card-content">
-          <span class="card-title amber-text text-darken-4"><b>Soy el nombre de una Oferta</b></span>
-          <h6>Soy el nombre de la empresa</h6>
-          <span><i class="tiny material-icons">location_on</i>Lugar de la empresa</span><br>
-          <span><i class="tiny material-icons">access_time</i> 00:00 am</span><br>
-          <p>soy una descripcion de una oferta de trabajo abcd ef flajnslikjflk oskf lakjsflc iusajhdflncsd skjdfkjsnsdkc isdhkfhshudf suyhs asnoiehfusdhc</p>
+          <span class="card-title amber-text text-darken-4"><b>{{ offer.job_name}}</b></span>
+          <h6>{{ enterpriseName offer.job_ent_id }}</h6>
+          <span><i class="tiny material-icons">location_on</i> {{ locationName offer.job_id_location }}</span><br>
+          <span><i class="tiny material-icons">access_time</i> {{ dateTimeOffer }}</span><br>
+          <p> {{ offer.job_description }}</p>
         </div>
         <div class="card-action" style="text-align: right;">
           <a href="#" style="color: var(--secundary-color);">ver detalles</a>
