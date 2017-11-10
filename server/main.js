@@ -10,3 +10,7 @@ Meteor.startup(() => {
     City.insert({cit_name: 'Cali'})
   }
 })
+
+Meteor.publish('Enterprises', function(skip){
+  return Meteor.users.find({profile: {typeProfile: 'enterprise'}})
+})

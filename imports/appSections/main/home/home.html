@@ -1,3 +1,5 @@
 <template name="home">
-  <h1>Hola, soy la Home template</h1>
+  {{#each offer in offers}}
+    {{ >offerResume offer=offer }}
+  {{/each}}
 </template>

@@ -4,11 +4,12 @@ import { Meteor } from 'meteor/meteor'
 var jobOffer = new Mongo.Collection('jobOffer',{idGeneration: 'STRING'})
 
 jobOffer.schema = new SimpleSchema({
-  job_ent_name: {type: String},
-  job_location: {type: String},
+  job_name: {type: String},
+  job_ent_id: {type: String},
+  job_id_location: {type: String},
   job_salary: {type: Number},
   job_requirements: {type: [String]},
-  job_description: {type: String}
+  job_description: {type: [String]}
 })
 
 jobOffer.attachSchema(jobOffer.schema)
