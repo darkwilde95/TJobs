@@ -2,6 +2,8 @@ import { Template } from 'meteor/templating'
 import { City } from '/imports/db/city'
 
 import './userProfile.html'
+import './studyRegister/studyRegister'
+import './jobRegister/jobRegister'
 
 Template.userProfile.helpers({
   userLocationHelper: function(){

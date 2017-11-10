@@ -3,7 +3,7 @@ import { City } from '/imports/db/city'
 import { JobOffer } from '/imports/db/jobOffer'
 import '/imports/db/'
 
-Meteor.startup(() => {
+Meteor.startup(function(){
   if(City.find({}).count() == 0){
     City.insert({cit_name: 'Bogota D.C.'})
     City.insert({cit_name: 'Manizales'})

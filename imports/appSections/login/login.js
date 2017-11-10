@@ -11,7 +11,7 @@ Template.login.events({
     var password = $('#login_password').val()
     Meteor.loginWithPassword(email, password)
     if(Meteor.userId()){
-        Router.go('mainActivity')
+      Router.go('mainActivity')
     }
   }
 })
