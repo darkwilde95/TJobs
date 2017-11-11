@@ -21,7 +21,7 @@
                 <th>Segundo apellido:</th><td><span class="truncate">{{currentUser.profile.name.secondLastName}}</span></td>
               </tr>
               <tr>
-                <th>Ciudad de residencia:</th><td><span class="truncate">{{userLocationHelper}}</span></td>
+                <th>Ciudad de residencia:</th><td><span class="truncate">{{ userLocation }}</span></td>
               </tr>
               <tr>
                 <th>Contacto:</th><td><span class="truncate">{{currentUser.profile.number}}</span></td>
@@ -35,26 +35,6 @@
       </div>
     </li>
   </ul>
-  <br>
-  <ul class="collection with-header">
-    <li class="collection-header"><h5>Estudios</h5></li>
-    {{#if hasStudies}}
-      {{#each study in currentUser.studies}}
-        <li class="collection-item">{{> studyRegisterTemplate study=study }}</li>
-      {{/each}}
-    {{else}}
-      <li class="collection-item">No hay estudios registrados.</li>
-    {{/if}}
-  </ul>
-  <br>
-  <ul class="collection with-header">
-    <li class="collection-header"><h5>Experiencia Laboral</h5></li>
-    {{#if hasJobs}}
-      {{#each job in currentUser.jobs}}
-        <li class="collection-item">{{> jobRegisterTemplate job=job }}</li>
-      {{/each}}
-    {{else}}
-      <li class="collection-item">No hay trabajos registrados</li>
-    {{/if}}
-  </ul>
+  {{ >studiesSection }}
+  {{ >jobsSection }}
 </template>

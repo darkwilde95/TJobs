@@ -2,17 +2,17 @@ import { Template } from 'meteor/templating'
 import { City } from '/imports/db/city'
 
 import './userProfile.html'
-import './studyRegister/studyRegister'
-import './jobRegister/jobRegister'
+import './studiesSection/studiesSection'
+import './jobsSection/jobsSection'
+
+Template.userProfile.onRendered(function(){
+  $(document).ready(function(){
+    $('.collapsible').collapsible()
+  })
+})
 
 Template.userProfile.helpers({
-  userLocationHelper: function(){
+  userLocation: function(){
     return City.findOne({_id: Meteor.user().profile.location}).cit_name
-  },
-  hasStudies: function(){
-    return (Meteor.user().profile.studies.length == 0)? false: true
-  },
-  hasJobs: function(){
-    return (Meteor.user().profile.jobs.length == 0)? false: true
   }
 })

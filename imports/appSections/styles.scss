@@ -86,3 +86,15 @@ td span.truncate {
 .spinner-yellow, .spinner-yellow-only {
   border-color: var(--secundary-color);
 }
+
+.collapsible {
+  border-color: rgb(224, 224, 224);
+  border-width: 1px;
+  border-style: solid;
+  border-top: 0px;
+  box-shadow: none;
+}
+
+.collapsible-body {
+  padding-top: 16px !important;
+}
