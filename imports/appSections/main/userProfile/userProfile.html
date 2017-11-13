@@ -1,6 +1,7 @@
 <template name="userProfile">
   <div style="text-align: center;">
-    <img class="circle" style="width: 150px; height: 150px; overflow: hidden;" src="/img/noImageProfile.svg">
+    <img class="circle" style="width: 150px; height: 150px; overflow: hidden;"
+                                                  src="/img/noImageProfile.svg">
     <br>
     <h4>{{currentUser.profile.name.name}} {{currentUser.profile.name.firstLastName}}</h4>
   </div>
@@ -12,22 +13,28 @@
           <table class="table">
             <tbody>
               <tr>
-                <th>Nombre(s):</th><td><span class="truncate">{{currentUser.profile.name.name}}</span></td>
+                <th>Nombre(s):</th><td><span class="truncate">
+                                  {{ currentUser.profile.name.name}}</span></td>
               </tr>
               <tr>
-                <th>Primer apellido:</th><td><span class="truncate">{{currentUser.profile.name.firstLastName}}</span></td>
+                <th>Primer apellido:</th><td><span class="truncate">
+                        {{ currentUser.profile.name.firstLastName }}</span></td>
               </tr>
               <tr>
-                <th>Segundo apellido:</th><td><span class="truncate">{{currentUser.profile.name.secondLastName}}</span></td>
+                <th>Segundo apellido:</th><td><span class="truncate">
+                        {{ currentUser.profile.name.secondLastName }}</span></td>
               </tr>
               <tr>
-                <th>Ciudad de residencia:</th><td><span class="truncate">{{ userLocation }}</span></td>
+                <th>Ciudad de residencia:</th><td><span class="truncate">
+                                                  {{ userLocation }}</span></td>
               </tr>
               <tr>
-                <th>Contacto:</th><td><span class="truncate">{{currentUser.profile.number}}</span></td>
+                <th>Contacto:</th><td><span class="truncate">
+                                    {{ currentUser.profile.number }}</span></td>
               </tr>
               <tr>
-                <th>e-mail:</th><td><span class="truncate">{{currentUser.emails.[0].address}}</span></td>
+                <th>e-mail:</th><td><span class="truncate">
+                                {{ currentUser.emails.[0].address }}</span></td>
               </tr>
             </tbody>
           </table>

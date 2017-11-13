@@ -7,15 +7,21 @@
         </div>
         <div class="nav-content">
           <ul class="tabs tabs-transparent" id="main_tabs">
-            <li class="tab light-primary-color"><a href="#home"><i class="material-icons" >home</i></a></li>
+            <li class="tab light-primary-color"><a href="#home">
+                                      <i class="material-icons">home</i></a></li>
             {{#if chooseType}}
-              <li class="tab light-primary-color"><a href="#search"><i class="material-icons">search</i></a></li>
-              <li class="tab light-primary-color"><a href="#userProfile"><i class="material-icons">person</i></a></li>
+              <li class="tab light-primary-color"><a href="#search">
+                                    <i class="material-icons">search</i></a></li>
+              <li class="tab light-primary-color"><a href="#userProfile">
+                                    <i class="material-icons">person</i></a></li>
             {{else}}
-              <li class="tab light-primary-color"><a href="#publishOffer"><i class="material-icons">publish</i></a></li>
-              <li class="tab light-primary-color"><a href="#enterpriseProfile"><i class="material-icons">business</i></a></li><!--location_city-->
+              <li class="tab light-primary-color"><a href="#publishOffer">
+                                  <i class="material-icons">publish</i></a></li>
+              <li class="tab light-primary-color"><a href="#enterpriseProfile">
+                                  <i class="material-icons">business</i></a></li><!--location_city-->
             {{/if}}
-            <li class="tab light-primary-color"><a href="#settings"><i class="material-icons">settings</i></a></li>
+            <li class="tab light-primary-color"><a href="#settings">
+                                  <i class="material-icons">settings</i></a></li>
           </ul>
         </div>
       </nav>
@@ -26,19 +32,22 @@
       <div id="home">
         {{ >home }}
       </div>
-      <div id="search">
-        {{ >search }}
-      </div>
-      <div id="publishOffer">
-        {{ >publishOffer }}
-      </div>
-      <div id="userProfile">
-        {{ >userProfile }}
-      </div>
-      <div id="enterpriseProfile">
-        {{ >enterpriseProfile }}
-      </div>
-      <div id="settings">
+      {{#if chooseType}}
+        <div id="search" style="display: none;">
+          {{ >search }}
+        </div>
+        <div id="userProfile" style="display: none;">
+          {{ >userProfile }}
+        </div>
+      {{ else }}
+        <div id="publishOffer" style="display: none;">
+          {{ >publishOffer }}
+        </div>
+        <div id="enterpriseProfile" style="display: none;">
+          {{ >enterpriseProfile }}
+        </div>
+      {{ /if }}
+      <div id="settings" style="display: none;">
         {{ >settings }}
       </div>
     </div>

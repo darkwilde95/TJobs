@@ -1,7 +1,9 @@
 <template name="studyRegister">
-  <ul  id="collapsibleStudy" class="collapsible" data-collapsible="accordion" style="margin-top: 0px;">
+  <ul  id="collapsibleStudy" class="collapsible" data-collapsible="accordion"
+                                                        style="margin-top: 0px;">
     <li id="collapStudy">
-      <div class="collapsible-header" style="color: var(--secundary-color)"><i class="material-icons">{{ study.icon }}</i>{{ study.message }}</div>
+      <div class="collapsible-header" style="color: var(--secundary-color)">
+          <i class="material-icons">{{ study.icon }}</i>{{ study.message }}</div>
       <div class="collapsible-body white" style="text-align: right;">
         <form class="col s12" method="post">
           <div class="input-field">
@@ -16,7 +18,8 @@
             <input type="number" id="year">
             <label for="instName" class="stlabels">Año de graduación</label>
           </div>
-          <button class="btn waves-effect waves-light primary-color" type="button" id="submitStudy">agregar</button>
+          <button class="btn waves-effect waves-orange primary-color"
+                                  type="button" id="submitStudy">agregar</button>
         </form>
       </div>
     </li>

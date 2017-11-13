@@ -6,17 +6,9 @@ import './register.html'
 import './registerUser/registerUser'
 import './registerEnterprise/registerEnterprise'
 
-Tracker.autorun(function(){
-  if(City.find({}).count() > 0){
-    $(document).ready(function(){
-      $('select').material_select()
-    })
-  }
-})
-
 Template.register.onCreated(function(){
   $(document).ready(function(){
+    $('select').not('.disabled').material_select()
     $('ul.tabs').tabs()
-    $('select').material_select()
   })
 })

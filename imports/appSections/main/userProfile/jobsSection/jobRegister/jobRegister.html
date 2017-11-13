@@ -1,7 +1,9 @@
 <template name="jobRegister">
-  <ul id="collapsibleJob" class="collapsible" data-collapsible="accordion" style="margin-top: 0px;">
+  <ul id="collapsibleJob" class="collapsible" data-collapsible="accordion"
+                                                        style="margin-top: 0px;">
     <li id="collapJob">
-      <div class="collapsible-header" style="color: var(--secundary-color)"><i class="material-icons">{{ job.icon }}</i>{{ job.message }}</div>
+      <div class="collapsible-header" style="color: var(--secundary-color)">
+              <i class="material-icons">{{ job.icon }}</i>{{ job.message }}</div>
       <div class="collapsible-body white" style="text-align: right;">
         <form class="col s12" method="post">
           <div class="input-field">
@@ -16,7 +18,8 @@
             <input type="number" id="duration">
             <label for="duration" class="jblabels">Duración</label>
           </div>
-          <button class="btn waves-effect waves-light primary-color" type="button" id="submitJob">agregar</button>
+          <button class="btn waves-effect waves-orange primary-color"
+                                    type="button" id="submitJob">agregar</button>
         </form>
       </div>
     </li>

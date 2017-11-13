@@ -1,5 +1,6 @@
 import { JobOffer } from '/imports/db/jobOffer'
 import { City } from '/imports/db/city'
+import { Meteor } from 'meteor/meteor'
 import './login/login'
 import './register/register'
 import './main/main'
@@ -13,7 +14,6 @@ Router.route('/', {
     }else{
       this.redirect('mainActivity')
     }
-    this.next()
   }
 })
 
@@ -23,8 +23,16 @@ Router.route('/login',{
   onBeforeAction: function(){
     if(Meteor.userId()){
       this.redirect('mainActivity')
+    }else{
+      this.next()
     }
-    this.next()
+  },
+  action: function(){
+    if(Meteor.loggingIn()){
+      this.render('loading')
+    }else{
+      this.render()
+    }
   }
 })
 
@@ -34,22 +42,23 @@ Router.route('/register',{
   subscriptions: function(){
     this.subscribe('City').wait()
   },
-  data: function() {
-    return {'city': City.find({})}
-  },
   onBeforeAction: function(){
     if(Meteor.userId()){
       this.redirect('mainActivity')
+    }else{
+      this.next()
     }
-    this.next()
   },
   action: function(){
-    if (this.ready()) {
+    if(this.ready()){
       this.render()
     } else {
       this.render('loading')
     }
-  }
+  },
+  data: function() {
+    return {'city': City.find({})}
+  },
 })
 
 Router.route('/main', {
@@ -58,24 +67,26 @@ Router.route('/main', {
   subscriptions: function(){
     this.subscribe('City').wait()
     this.subscribe('JobOffer').wait()
+    this.subscribe('Enterprises').wait()
+  },
+  onBeforeAction: function(){
+    if(Meteor.userId()){
+      this.next()
+    }else{
+      this.redirect('loginActivity')
+    }
+  },
+  action: function(){
+    if(this.ready()){
+      this.render()
+    }else{
+      this.render('loading')
+    }
   },
   data: function() {
     return {
       'city': City.find({}),
       'jobOffers': JobOffer.find({})
-    }
-  },
-  onBeforeAction: function(){
-    if(!Meteor.userId()){
-      this.redirect('loginActivity')
-    }
-    this.next()
-  },
-  action: function(){
-    if (this.ready()) {
-      this.render()
-    } else {
-      this.render('loading')
     }
   }
 })

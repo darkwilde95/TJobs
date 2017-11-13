@@ -2,32 +2,33 @@
   <div style="text-align: center;" class="row">
     <form class="col s12" method="post">
       <div class="input-field col s12">
-        <input type="text" class="validate" id="registerU_name">
+        <input type="text" id="registerU_name" required>
         <label for="registerU_name">Nombre(s)</label>
       </div>
       <div class="input-field col s6">
-        <input type="text" class="validate" id="registerU_lastName1">
+        <input type="text" id="registerU_lastName1" required>
         <label for="registerU_lastName1">Primer apellido</label>
       </div>
       <div class="input-field col s6">
-        <input type="text" class="validate" id="registerU_lastName2">
+        <input type="text" id="registerU_lastName2" required>
         <label for="registerU_lastName2">Segundo Apellido</label>
       </div>
       <div class="input-field col s6">
-        <select class="amber-text text-darken-4" id="registerU_location">
+        <select class="amber-text text-darken-4" id="registerU_location" required>
           <option value="" disabled selected>Elegir una ciudad</option>
-          {{#each city}}
-            <option value="{{_id}}">{{cit_name}}</option>
-          {{/each}}
+          {{ #each city }}
+            <option value="{{_id}}">{{ cit_name }}</option>
+          {{ /each }}
           <label>Elegir una ciudad</label>
         </select>
       </div>
       <div class="input-field col s6">
-        <input type="number" class="validate" id="registerU_number">
+        <input type="number" id="registerU_number" min="1000000" max="9999999999" required>
         <label for="registerU_number">Número de teléfono</label>
+        <h6 class="red-text">{{ registerU_ENum }}</h6>
       </div>
       <div class="input-field col s12">
-        <select class="amber-text text-darken-4" id="registerU_gender">
+        <select class="amber-text text-darken-4" id="registerU_gender" required>
           <option value="" disabled selected>Elegir un genero</option>
           <option value="M">Masculino</option>
           <option value="F">Femenino</option>
@@ -36,19 +37,21 @@
         </select>
       </div>
       <div class="input-field col s12">
-        <input type="email" class="validate" id="registerU_email">
+        <input type="email" id="registerU_email" required>
         <label for="registerU_email">Email</label>
       </div>
       <div class="input-field col s12">
-        <input type="password" class="validate" id="registerU_password">
+        <input type="password" id="registerU_password" pattern=".{8,}" required>
         <label for="registerU_password">Contraseña</label>
       </div>
       <div class="input-field col s12">
-        <input type="password" class="validate" id="registerU_password2">
-        <label for="registerU_password2">Verificar contraseña</label>
+        <input type="password" id="registerU_password2" pattern=".{8,}" required>
+        <label for="registerU_password2">Confirmar contraseña</label>
+        <h6 class="red-text">{{ registerU_EPass }}</h6>
       </div>
       <div class="input-field col s12">
-        <button class="btn waves-effect waves-light primary-color" id="registerU_submit">Registrar</button>
+        <button class="btn waves-effect waves-orange primary-color disabled"
+          style="margin-bottom: 16px;" id="registerU_submit">Registrar</button>
       </div>
     </form>
   </div>

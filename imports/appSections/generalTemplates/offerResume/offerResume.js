@@ -3,11 +3,6 @@ import { Template } from 'meteor/templating'
 import { City } from '/imports/db/city'
 import './offerResume.html'
 
-Template.offerResume.onCreated(function(){
-  Meteor.subscribe('Enterprises')
-  Meteor.subscribe('City')
-})
-
 Template.offerResume.helpers({
   enterpriseName: function(enterpriseId){
     return Meteor.users.findOne({_id: enterpriseId}).profile.name

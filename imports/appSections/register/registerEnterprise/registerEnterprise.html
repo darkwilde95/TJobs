@@ -2,11 +2,11 @@
   <div style="text-align: center;" class="row">
     <form class="col s12" method="post">
       <div class="input-field col s12">
-        <input type="text" class="validate" id="registerE_name">
+        <input type="text" id="registerE_name" required>
         <label for="registerE_name">Nombre de la empresa</label>
       </div>
       <div class="input-field col s6">
-        <select class="amber-text text-darken-4" id="registerE_location">
+        <select class="amber-text text-darken-4" id="registerE_location" required>
           <option value="" disabled selected>Elegir una Ciudad</option>
           {{#each city}}
             <option value="{{_id}}">{{cit_name}}</option>
@@ -15,23 +15,26 @@
         </select>
       </div>
       <div class="input-field col s6">
-        <input type="number" class="validate" id="registerE_number">
+        <input type="number" id="registerE_number" min="1000000" max="9999999999" required>
         <label for="registerE_number">Número de teléfono</label>
+          <h6 class="red-text">{{ registerE_ENum }}</h6>
       </div>
       <div class="input-field col s12">
-        <input type="email" class="validate" id="registerE_email">
+        <input type="email" id="registerE_email" required>
         <label for="registerE_email">Email</label>
       </div>
       <div class="input-field col s12">
-        <input type="password" class="validate" id="registerE_password">
+        <input type="password" id="registerE_password" pattern=".{8,}" required>
         <label for="registerE_password">Contraseña</label>
       </div>
       <div class="input-field col s12">
-        <input type="password" class="validate" id="registerE_password2">
-        <label for="registerE_password2">Verificar contraseña</label>
+        <input type="password" id="registerE_password2" pattern=".{8,}" required>
+        <label for="registerE_password2">Confirmar contraseña</label>
+        <h6 class="red-text">{{ registerE_EPass }}</h6>
       </div>
       <div class="input-field col s12">
-        <button class="btn waves-effect waves-light primary-color" id="registerE_submit">Registrar</button>
+        <button class="btn waves-effect waves-orange primary-color disabled"
+                                        id="registerE_submit">Registrar</button>
       </div>
     </form>
   </div>

@@ -7,20 +7,10 @@ Template.settings.events({
   'click #settings_logout'(event){
     event.preventDefault()
     Meteor.logout()
-    Tracker.autorun(function(){
-      if(!Meteor.userId()){
-        Router.go('loginActivity')
-      }
-    })
   },
 
   'click #settings_deleteProfile'(event){
     event.preventDefault()
     Meteor.call('deleteProfile')
-    Tracker.autorun(function(){
-      if(!Meteor.userId()){
-        Router.go('loginActivity')
-      }
-    })
   }
 })
