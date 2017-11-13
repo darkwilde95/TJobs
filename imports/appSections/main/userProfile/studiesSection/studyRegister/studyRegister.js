@@ -4,6 +4,39 @@ import { ReactiveVar } from 'meteor/reactive-var'
 import './studyRegister.html'
 
 var studyAdding = new ReactiveVar(false)
+var yearValid = new ReactiveVar(false)
+var maxYear 
+
+function addStudyEvent(event) {
+  var year = $('#year').val()
+  var submit = $('#submitStudy')
+  if(year >= 1950 && year <= maxYear){
+    yearValid.set(false)
+  }else{
+    yearValid.set(true)
+    if(!submit.hasClass('disabled')) submit.addClass('disabled')
+    if(event.keyCode == 13){
+      event.preventDefault()
+    }
+    return false
+  }
+  var instName = $('#instName').val()
+  var title = $('#title').val()
+  if(instName && title){
+    if(submit.hasClass('disabled')) submit.removeClass('disabled')
+    return false
+  }
+  if(!submit.hasClass('disabled')) submit.addClass('disabled')
+  if(event.keyCode == 13){
+    event.preventDefault()
+  }
+}
+
+Template.studyRegister.onCreated(function(){
+  maxYear = new Date().getFullYear()
+  studyAdding.set(false)
+  yearValid.set(false)
+})
 
 Template.studyRegister.helpers({
   study: function(){
@@ -12,6 +45,12 @@ Template.studyRegister.helpers({
     }else{
       return { icon: 'add', message: 'AGREGAR ESTUDIO' }
     }
+  },
+  maxYear: function(){
+    return maxYear
+  },
+  yearError: function(){
+    return (yearValid.get())? 'Año inválido': ''
   }
 })
 
@@ -44,5 +83,10 @@ Template.studyRegister.events({
     instName.val('')
     title.val('')
     year.val('')
+    yearValid.set(false)
+    $('#submitStudy').addClass('disabled')
+  },
+  'keyup, keydown'(event){
+    addStudyEvent(event)
   }
 })

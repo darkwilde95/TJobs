@@ -11,6 +11,7 @@ function registerUserEvent(event){
   var password1 = $('#registerU_password').val()
   var password2 = $('#registerU_password2').val()
   var userNumber = $('#registerU_number').val()
+  var submit = $('#registerU_submit')
   if(password1.length < 8 || password2.length < 8){
     regUserP.set(1) //Error 1 es de tamaño de contraseña
   }else if(password1 != password2) {
@@ -24,7 +25,7 @@ function registerUserEvent(event){
     regUserN.set(true)  //El numero no es valido
   }
   if(regUserP.get() > 0 || regUserN.get()){
-    $('#registerU_submit').addClass('disabled')
+    if(!submit.hasClass('disabled')) submit.addClass('disabled')
     if(event.keyCode == 13){
       event.preventDefault()
     }
@@ -38,10 +39,10 @@ function registerUserEvent(event){
   var userEmail = $('#registerU_email').val()
   if(userName && userLastName1 && userLastName2 && userLocation && userGender
     && userNumber && userEmail){
-    $('#registerU_submit').removeClass('disabled')
+    if(submit.hasClass('disabled')) submit.removeClass('disabled')
     return false
   }
-  $('#registerU_submit').addClass('disabled')
+  if(!submit.hasClass('disabled')) submit.addClass('disabled')
   if(event.keyCode == 13){
     event.preventDefault()
   }

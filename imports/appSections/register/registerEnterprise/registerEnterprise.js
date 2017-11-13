@@ -11,6 +11,7 @@ function registerEnterpriseEvent(event) {
   var password1 = $('#registerE_password').val()
   var password2 = $('#registerE_password2').val()
   var enterpriseNumber = $('#registerE_number').val()
+  var submit = $('#registerE_submit')
   if(password1.length < 8 || password2.length < 8){
     regEnterpriseP.set(1) //Error 1 es de tamaño de contraseña
   }else if(password1 != password2) {
@@ -24,7 +25,7 @@ function registerEnterpriseEvent(event) {
     regEnterpriseN.set(true)  //El numero no es valido
   }
   if(regEnterpriseP.get() > 0 || regEnterpriseN.get()){
-    $('#registerE_submit').addClass('disabled')
+    if(!submit.hasClass('disabled')) submit.addClass('disabled')
     if(event.keyCode == 13){
       event.preventDefault()
     }
@@ -35,10 +36,10 @@ function registerEnterpriseEvent(event) {
   var enterpriseEmail = $('#registerE_email').val()
   if(enterpriseName && enterpriseLocation && enterpriseNumber
     && enterpriseEmail){
-    $('#registerE_submit').removeClass('disabled')
+    if(submit.hasClass('disabled')) submit.removeClass('disabled')
     return false
   }
-  $('#registerE_submit').addClass('disabled')
+  if(!submit.hasClass('disabled')) submit.addClass('disabled')
   if(event.keyCode == 13){
     event.preventDefault()
   }

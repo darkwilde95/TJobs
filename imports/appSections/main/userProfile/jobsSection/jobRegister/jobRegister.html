@@ -5,22 +5,34 @@
       <div class="collapsible-header" style="color: var(--secundary-color)">
               <i class="material-icons">{{ job.icon }}</i>{{ job.message }}</div>
       <div class="collapsible-body white" style="text-align: right;">
-        <form class="col s12" method="post">
-          <div class="input-field">
-            <input type="text" id="enterName">
-            <label for="enterName" class="jblabels">Nombre Empresa</label>
-          </div>
-          <div class="input-field">
-            <input type="text" id="appointment">
-            <label for="appointment" class="jblabels">Cargo</label>
-          </div>
-          <div class="input-field">
-            <input type="number" id="duration">
-            <label for="duration" class="jblabels">Duración</label>
-          </div>
-          <button class="btn waves-effect waves-orange primary-color"
-                                    type="button" id="submitJob">agregar</button>
-        </form>
+        <div class="row">
+          <form class="col s12" action="#" method="post">
+            <div class="input-field col s12">
+              <input type="text" id="enterName">
+              <label for="enterName" class="jblabels">Nombre Empresa</label>
+            </div>
+            <div class="input-field col s12">
+              <input type="text" id="appointment">
+              <label for="appointment" class="jblabels">Cargo</label>
+            </div>
+            <div class="input-field col s6">
+              <input type="number" id="duration" min="1">
+              <label for="duration" class="jblabels">Duración</label>
+              <h6 class="red-text">{{ durationError }}</h6>
+            </div>
+            <div class="input-field col s6">
+              <select class="amber-text text-darken-4" id="time" required>
+                <option value="" disabled selected>Elegir un intervalo</option>
+                <option value="D">Días</option>
+                <option value="M">Meses</option>
+                <option value="Y">Años</option>
+                <label>Elegir un intervalo</label>
+              </select>
+            </div>
+            <button class="btn waves-effect waves-orange primary-color disabled"
+                                      type="button" id="submitJob">agregar</button>
+          </form>
+        </div>
       </div>
     </li>
   </ul>
