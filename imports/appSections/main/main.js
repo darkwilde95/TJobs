@@ -3,6 +3,7 @@ import { Meteor } from 'meteor/meteor'
 
 import './main.html'
 import './home/home'
+import './resume/resume'
 import './search/search'
 import './publishOffer/publishOffer'
 import './userProfile/userProfile'

@@ -7,14 +7,16 @@
         </div>
         <div class="nav-content">
           <ul class="tabs tabs-transparent" id="main_tabs">
+            {{#if chooseType}}
             <li class="tab light-primary-color"><a href="#home">
                                       <i class="material-icons">home</i></a></li>
-            {{#if chooseType}}
               <li class="tab light-primary-color"><a href="#search">
                                     <i class="material-icons">search</i></a></li>
               <li class="tab light-primary-color"><a href="#userProfile">
-                                    <i class="material-icons">person</i></a></li>
+                                    <i class="material-icons">account_circle</i></a></li>
             {{else}}
+              <li class="tab light-primary-color"><a href="#resume">
+                                      <i class="material-icons">contacts</i></a></li>
               <li class="tab light-primary-color"><a href="#publishOffer">
                                   <i class="material-icons">publish</i></a></li>
               <li class="tab light-primary-color"><a href="#enterpriseProfile">
@@ -29,10 +31,10 @@
   </header>
   <main>
     <div class="container content">
-      <div id="home">
-        {{ >home }}
-      </div>
       {{#if chooseType}}
+        <div id="home">
+          {{ >home }}
+        </div>
         <div id="search" style="display: none;">
           {{ >search }}
         </div>
@@ -40,6 +42,9 @@
           {{ >userProfile }}
         </div>
       {{ else }}
+        <div id="resume">
+          {{ >resume }}
+        </div>
         <div id="publishOffer" style="display: none;">
           {{ >publishOffer }}
         </div>

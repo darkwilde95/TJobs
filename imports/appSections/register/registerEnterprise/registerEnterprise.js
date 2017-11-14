@@ -31,11 +31,12 @@ function registerEnterpriseEvent(event) {
     }
     return false
   }
+  var address = $('#registerE_address').val()
   var enterpriseName = $('#registerE_name').val()
   var enterpriseLocation = $('#registerE_location').val()
   var enterpriseEmail = $('#registerE_email').val()
   if(enterpriseName && enterpriseLocation && enterpriseNumber
-    && enterpriseEmail){
+    && enterpriseEmail && address){
     if(submit.hasClass('disabled')) submit.removeClass('disabled')
     return false
   }
@@ -83,6 +84,7 @@ Template.registerEnterprise.events({
     var enterpriseEmail = $('#registerE_email').val()
     var password1 = $('#registerE_password').val()
     var password2 = $('#registerE_password2').val()
+    var enterpriseAddress = $('#registerE_address').val()
     var enterpriseProfile = {
       email: enterpriseEmail,
       password: password1,
@@ -90,7 +92,9 @@ Template.registerEnterprise.events({
         typeProfile: 'enterprise',
         name: enterpriseName,
         number: enterpriseNumber,
-        location: enterpriseLocation
+        location: enterpriseLocation,
+        address: enterpriseAddress,
+        branchOffices:[]
       }
     }
     Accounts.createUser(enterpriseProfile)

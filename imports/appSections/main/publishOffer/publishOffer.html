@@ -1,3 +1,31 @@
 <template name="publishOffer">
-  <h3>Soy la template de publicación de ofertas</h3>
+  <div class="row">
+    <br><h5 class="center">Publicar una oferta</h5>
+    <form class="col s12" action="#" method="post">
+      <div class="input-field col s12">
+        <input type="text" id="offerName" required>
+        <label for="offerName">Nombre de la oferta</label>
+      </div>
+      <div class="input-field col s12">
+        <input type="number" id="salary" required>
+        <label for="salary">Salario</label>
+      </div>
+      <div class="input-field col s12">
+        <textarea class="materialize-textarea" id="description"></textarea>
+        <label for="description">Descripción</label>
+      </div>
+      <div class="input-field col s10">
+        <input type="text" id="requirements">
+        <label for="requirements">Requerimientos</label>
+      </div>
+      <div class="input-field col s2">
+        <button class="btn-floating waves-effect waves-orange secundary-color"
+                  id="addRequeriment"><i class="material-icons">add</i></button>
+      </div>
+      <div class="input-field col s12 center">
+        <button type="button" class="btn waves-effect waves-orange primary-color"
+                                                id="submitOffer">Publicar</button>
+      </div>
+    </form>
+  </div>
 </template>

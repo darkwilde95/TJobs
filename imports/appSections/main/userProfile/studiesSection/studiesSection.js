@@ -1,4 +1,5 @@
 import { Template } from 'meteor/templating'
+import { Meteor } from 'meteor/meteor'
 
 import './studiesSection.html'
 import './studyItem/studyItem'
@@ -6,6 +7,11 @@ import './studyRegister/studyRegister'
 
 Template.studiesSection.helpers({
   hasStudies: function(){
-    return (Meteor.user().profile.studies.length == 0)? false: true
+    var user = Meteor.user()
+    if(user){
+      return (user.profile.studies.length > 0)? true : false
+    }else{
+      return false
+    }
   }
 })
