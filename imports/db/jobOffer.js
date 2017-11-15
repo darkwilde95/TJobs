@@ -7,6 +7,7 @@ jobOffer.schema = new SimpleSchema({
   job_name: {type: String},
   job_ent_id: {type: String},
   job_id_location: {type: String},
+  job_dateTime: {type: Number},
   job_salary: {type: Number},
   job_requirements: {type: [String]},
   job_description: {type: String}

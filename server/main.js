@@ -16,14 +16,18 @@ Meteor.publish('Enterprises', function(){
   return Meteor.users.find({ 'profile.typeProfile': 'enterprise'})
 })
 
+
 Meteor.methods({
   deleteProfile: function(){
     var account = Meteor.users.findOne({_id: this.userId})
-    // if(account.profile.typeProfile == 'user'){
-    //   Aqui borrar todo lo que sea de un usuario
-    // }else{
-    //   Aqui borrar todo lo que sea de la empresa
-    // }
+    if(account.profile.typeProfile == 'user'){
+      console.log('Asumiendo que se borran las cosas del user')
+    }else{
+      JobOffer.remove({job_ent_id: this.userId})
+    }
     Meteor.users.remove(account)
   },
+  publishNewOffer: function(offer){
+    JobOffer.insert(offer)
+  }
 })
