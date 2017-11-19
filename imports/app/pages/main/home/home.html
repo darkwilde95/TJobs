@@ -1,0 +1,11 @@
+<template name="home">
+  {{ #if hasOffers }}
+    {{ #each o in jobOffers }}
+      {{ >offerResume item=o }}
+    {{ /each }}
+  {{ else }}
+    <h5 class="grey-text" style="width: -webkit-fill-available; text-align: center;">
+      No hay ofertas publicadas
+    </h5>
+  {{ /if }}
+</template>

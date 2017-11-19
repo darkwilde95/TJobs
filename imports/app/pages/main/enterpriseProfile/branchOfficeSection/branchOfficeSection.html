@@ -1,0 +1,13 @@
+<template name="branchOfficeSection">
+  <ul class="collection with-header" style="margin-bottom: 0px;">
+    <li class="collection-header"><h5>Sucursales</h5></li>
+    {{#if hasBranchOffices}}
+      {{#each bo in currentUser.profile.branchOffices}}
+        <li class="collection-item">{{ >branchOffice item=bo }}</li>
+      {{/each}}
+    {{else}}
+      <li class="collection-item">No hay sucursales registradas.</li>
+    {{/if}}
+  </ul>
+  {{ >branchOfficeRegister }}
+</template>
