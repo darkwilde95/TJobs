@@ -12,14 +12,14 @@
         <a href="#forUser" class="white-text">¿Buscas Empleo?</a>
       </li>
       <li class="tab light-primary-color">
-        <a href="#forEnterprise" class="white-text">¿Buscas Emplear?</a>
+        <a href="#forEnterprise" class="white-text">¿Eres empleador?</a>
       </li>
     </ul>
     <br>
     <div id="forUser" style="width: 100%;">
       {{ >registerUser city=city }}
     </div>
-    <div id="forEnterprise" style="width: 100%;">
+    <div id="forEnterprise" style="width: 100%; display: none;">
       {{ >registerEnterprise city=city }}
     </div>
   </main>

@@ -1,6 +1,6 @@
 <template name="publishOffer">
   <div class="row">
-    <br><h5 class="center">Publicar una oferta</h5>
+    <br>
     <form class="col s12" action="#" method="post">
       <div class="input-field col s12">
         <input type="text" id="offerName" required>
@@ -22,6 +22,20 @@
         <button class="btn-floating waves-effect waves-orange secundary-color disabled"
                   id="addRequeriment"><i class="material-icons">add</i></button>
       </div>
+      {{ #if hasBOffices }}
+        <div class="input-field col s12">
+          <select class="amber-text text-darken-4" id="OfferLocation" required>
+            <option value="" disabled selected>Elegir una Sucursal</option>
+            <option value="{{ principalLocation }} {{ currentUser.profile.address }}"><!--
+            -->{{ principalLocation }} - {{ currentUser.profile.address }}</option>
+            {{ #each BOffices }}
+              <option value="{{ OLocation location }} {{ address }}"><!--
+              -->{{ OLocation location }} - {{ address }}</option>
+            {{/each}}
+            <label>Elegir una Sucursal</label>
+          </select>
+        </div>
+      {{ /if }}
       <div class="input-field col s12 center">
         <button class="btn waves-effect waves-orange primary-color disabled"
                                                 id="submitPublish">Publicar</button>

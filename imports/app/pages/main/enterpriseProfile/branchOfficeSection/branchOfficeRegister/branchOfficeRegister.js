@@ -76,7 +76,9 @@ Template.branchOfficeRegister.events({
     var number = $('#numberBO')
     var address = $('#addressBO')
     var location = $('#locationBO')
+
     var branchOffice = {
+      id: Meteor.user().profile.branchOffices.length+1,
       address: address.val(),
       location: location.val(),
       number: number.val()
@@ -91,6 +93,9 @@ Template.branchOfficeRegister.events({
     number.val('')
     numberError.set(false)
     $('#submitBranchOffer').addClass('disabled')
+    $(document).ready(function(){
+      $('select').not('.disabled').material_select()
+    })
   },
   'keyup, keydown'(event){
     addBOEvent(event)

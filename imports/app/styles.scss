@@ -81,8 +81,9 @@ textarea.materialize-textarea:focus{
   background-color: var(--secundary-color) !important;
 }
 
-.dropdown-content li > span {
+ul.dropdown-content li span {
   color: var(--main-color) !important;
+  white-space: nowrap !important;
 }
 
 .spinner-yellow, .spinner-yellow-only {

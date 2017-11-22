@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor'
+import { City } from '/imports/db/city'
 import { Template } from 'meteor/templating'
 import { ReactiveVar } from 'meteor/reactive-var'
 
@@ -13,7 +14,9 @@ function newOfferEvent(event){
   var submit = $('#submitPublish')
   var salary = $('#salary').val()
   var requirements = $('#requirements').val()
-  if(requirements){
+  var BOffice = (Meteor.user().profile.branchOffices.length > 0) ?
+                $('#OfferLocation').val() : true
+  if(requirements && BOffice){
     if(addRequeriment.hasClass('disabled')) addRequeriment.removeClass('disabled')
   }else{
     if(!addRequeriment.hasClass('disabled')) addRequeriment.addClass('disabled')
@@ -42,11 +45,36 @@ function newOfferEvent(event){
 Template.publishOffer.onCreated(function(){
   validSalary.set(false)
   validPublish.set(false)
+  $(document).ready(function(){
+    $('select').not('.disabled').material_select()
+    $('#OfferLocation').on('change', function(event) {
+      newOfferEvent(event)
+    })
+  })
 })
 
 Template.publishOffer.helpers({
   salaryError: function(){
     return (validSalary.get()) ? '' : 'Valor de salario inválido'
+  },
+  hasBOffices: function(){
+    var enterprise = Meteor.user()
+    if(enterprise){
+      return (enterprise.profile.branchOffices.length > 0)? true: false
+    }
+    return false
+  },
+  BOffices: function(){
+    var enterprise = Meteor.user()
+    if(enterprise){
+      return enterprise.profile.branchOffices
+    }
+  },
+  principalLocation: function(){
+    return City.findOne({_id: Meteor.user().profile.location}).cit_name
+  },
+  OLocation: function(location){
+    return City.findOne({_id: location}).cit_name
   }
 })
 
@@ -63,10 +91,12 @@ Template.publishOffer.events({
     var name = $('#offerName').val()
     var salary = $('#salary').val()
     var description = $('#description').val()
+    var BOffice = (Meteor.user().profile.branchOffices.length > 0) ?
+                  ('#OfferLocation').val() : Meteor.user().profile.location
     var offer = {
       job_name: name,
       job_ent_id: Meteor.userId(),
-      job_id_location: Meteor.user().profile.location,
+      job_id_location: BOffice,
       job_dateTime: new Date().getTime(),
       job_salary: salary,
       job_requirements: requerimentsList.get(),
