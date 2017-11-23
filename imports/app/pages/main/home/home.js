@@ -11,6 +11,9 @@ Template.home.onRendered(function(){
 
 Template.home.helpers({
   hasOffers: function(){
-    return (JobOffer.find().count() > 0)? true : false
+    return JobOffer.find({}).count() > 0
+  },
+  jobOffers: function(){
+    return JobOffer.find({})
   }
 })

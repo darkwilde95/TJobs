@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor'
 import { Template } from 'meteor/templating'
 import { Accounts } from 'meteor/accounts-base'
 import { ReactiveVar } from 'meteor/reactive-var'
@@ -91,10 +92,9 @@ Template.registerEnterprise.events({
       profile: {
         typeProfile: 'enterprise',
         name: enterpriseName,
-        number: enterpriseNumber,
         location: enterpriseLocation,
         address: enterpriseAddress,
-        branchOffices:[]
+        number: enterpriseNumber
       }
     }
     Accounts.createUser(enterpriseProfile)

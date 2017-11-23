@@ -105,8 +105,6 @@ Template.registerUser.events({
         number: userNumber,
         location: userLocation,
         gender: userGender,
-        studies: [],
-        jobs: []
       }
     }
     Accounts.createUser(userProfile)

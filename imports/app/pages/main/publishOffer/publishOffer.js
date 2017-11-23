@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor'
 import { City } from '/imports/db/city'
 import { Template } from 'meteor/templating'
 import { ReactiveVar } from 'meteor/reactive-var'
+import { BranchOffice } from '/imports/db/branchOffice'
 
 import './publishOffer.html'
 
@@ -58,23 +59,21 @@ Template.publishOffer.helpers({
     return (validSalary.get()) ? '' : 'Valor de salario inválido'
   },
   hasBOffices: function(){
-    var enterprise = Meteor.user()
-    if(enterprise){
-      return (enterprise.profile.branchOffices.length > 0)? true: false
-    }
-    return false
+    return BranchOffice.find({bra_ent_id: Meteor.userId()}).count() > 0
   },
   BOffices: function(){
-    var enterprise = Meteor.user()
-    if(enterprise){
-      return enterprise.profile.branchOffices
-    }
+    return BranchOffice.find({bra_ent_id: Meteor.userId()})
   },
   principalLocation: function(){
     return City.findOne({_id: Meteor.user().profile.location}).cit_name
   },
   OLocation: function(location){
-    return City.findOne({_id: location}).cit_name
+    var city = City.findOne({_id: location})
+    if(city){
+      return city.cit_name
+    }else{
+      return ''
+    }
   }
 })
 

@@ -1,2 +1,5 @@
+import './job'
 import './city'
+import './study'
 import './jobOffer'
+import './branchOffice'

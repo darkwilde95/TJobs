@@ -1,3 +1,4 @@
+import { Study } from '/imports/db/study'
 import { Template } from 'meteor/templating'
 import { ReactiveVar } from 'meteor/reactive-var'
 
@@ -73,11 +74,12 @@ Template.studyRegister.events({
     var title = $('#title')
     var year = $('#year')
     var study = {
-      name: instName.val(),
-      title: title.val(),
-      year: year.val()
+      stu_use_id: Meteor.userId(),
+      stu_instName: instName.val(),
+      stu_title: title.val(),
+      stu_year: year.val()
     }
-    Meteor.users.update({ _id: Meteor.userId() },{ $push: { 'profile.studies': study }})
+    Study.insert(study)
     $('#collapsibleStudy').collapsible('close', 0)
     studyAdding.set(false)
     $('.stlabels').removeClass('active')

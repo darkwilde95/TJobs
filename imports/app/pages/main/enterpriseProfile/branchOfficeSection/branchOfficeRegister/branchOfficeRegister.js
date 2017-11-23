@@ -1,5 +1,6 @@
 import { Template } from 'meteor/templating'
 import { ReactiveVar } from 'meteor/reactive-var'
+import { BranchOffice } from '/imports/db/branchOffice'
 
 import './branchOfficeRegister.html'
 
@@ -78,13 +79,12 @@ Template.branchOfficeRegister.events({
     var location = $('#locationBO')
 
     var branchOffice = {
-      id: Meteor.user().profile.branchOffices.length+1,
-      address: address.val(),
-      location: location.val(),
-      number: number.val()
+      bra_ent_id: Meteor.userId(),
+      bra_location: location.val(),
+      bra_address: address.val(),
+      bra_number: number.val()
     }
-    Meteor.users.update({ _id: Meteor.userId() },
-                        { $push: { 'profile.branchOffices': branchOffice }})
+    BranchOffice.insert(branchOffice)
     $('#collapsibleBranchOffices').collapsible('close', 0)
     addingBranchOffer.set(false)
     $('.stlabels').removeClass('active')

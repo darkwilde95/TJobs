@@ -19,6 +19,9 @@ if(Meteor.isServer){
   Meteor.publish('JobOffer', function(){
     return jobOffer.find({})
   })
+  Meteor.publish('JobOfferEnterprise', function(enterpriseId){
+    return jobOffer.find({job_ent_id: enterpriseId})
+  })
 }
 
 export const JobOffer = jobOffer

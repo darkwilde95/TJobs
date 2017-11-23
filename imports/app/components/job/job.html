@@ -2,13 +2,14 @@
   <table class="table">
     <tbody>
       <tr>
-        <th>Empresa:</th><td><span>{{ item.name }}</span></td>
+        <th>Empresa:</th><td><span>{{ item.job_enterpriseName }}</span></td>
       </tr>
       <tr>
-        <th>Cargo:</th><td><span>{{ item.appointment}}</span></td>
+        <th>Cargo:</th><td><span>{{ item.job_appointment}}</span></td>
       </tr>
       <tr>
-        <th>Duración:</th><td>{{ item.duration.time }} {{ item.duration.type}}</td>
+        <th>Duración:</th>
+        <td>{{ item.job_duration.time }} {{ item.job_duration.type}}</td>
       </tr>
     </tbody>
   </table>

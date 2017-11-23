@@ -1,16 +1,15 @@
-import { Template } from 'meteor/templating'
+import { Job } from '/imports/db/job'
 import { Meteor } from 'meteor/meteor'
+import { Template } from 'meteor/templating'
 
 import './jobsSection.html'
 import './jobRegister/jobRegister'
 
 Template.jobsSection.helpers({
   hasJobs: function(){
-    var user = Meteor.user()
-    if(user){
-      return (user.profile.jobs.length > 0)? true: false
-    }else{
-      return false
-    }
+    return Job.find({job_use_id: Meteor.userId()}).count() > 0
+  },
+  userJobs: function(){
+    return Job.find({job_use_id: Meteor.userId()})
   }
 })

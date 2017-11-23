@@ -1,16 +1,15 @@
-import { Template } from 'meteor/templating'
 import { Meteor } from 'meteor/meteor'
+import { Template } from 'meteor/templating'
+import { BranchOffice } from '/imports/db/branchOffice'
 
 import './branchOfficeSection.html'
 import './branchOfficeRegister/branchOfficeRegister'
 
 Template.branchOfficeSection.helpers({
   hasBranchOffices: function(){
-    var user = Meteor.user()
-    if(user){
-      return (user.profile.branchOffices.length > 0)? true: false
-    }else{
-      return false
-    }
+    return BranchOffice.find({bra_ent_id: Meteor.userId()}).count() > 0
+  },
+  enterpriseBOs: function(){
+    return BranchOffice.find({bra_ent_id: Meteor.userId()})
   }
 })

@@ -64,9 +64,19 @@ Router.route('/main', {
   name: 'mainActivity',
   template: 'main',
   subscriptions: function(){
+    var user = Meteor.user()
+    if(user){
+      if(user.profile.typeProfile == 'user'){
+        this.subscribe('EnterpriseNames').wait()
+        this.subscribe('Job', Meteor.userId()).wait()
+        this.subscribe('Study', Meteor.userId()).wait()
+        this.subscribe('JobOffer').wait()
+      }else{
+        this.subscribe('BranchOffice', Meteor.userId()).wait()
+        this.subscribe('JobOfferEnterprise', Meteor.userId()).wait()
+      }
+    }
     this.subscribe('City').wait()
-    this.subscribe('JobOffer').wait()
-    this.subscribe('Enterprises').wait()
   },
   onBeforeAction: function(){
     if(Meteor.userId()){
@@ -84,8 +94,7 @@ Router.route('/main', {
   },
   data: function() {
     return {
-      'city': City.find({}),
-      'jobOffers': JobOffer.find({})
+      'city': City.find({})
     }
   }
 })

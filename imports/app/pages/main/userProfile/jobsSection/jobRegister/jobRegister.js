@@ -1,3 +1,4 @@
+import { Job } from '/imports/db/job'
 import { Template } from 'meteor/templating'
 import { ReactiveVar } from 'meteor/reactive-var'
 
@@ -73,17 +74,18 @@ Template.jobRegister.events({
     var enterName = $('#enterName')
     var appointment = $('#appointment')
     var duration = $('#duration')
-    var time = $('#time')
+    var time = $('#time').val()
     var job = {
-      name: enterName.val(),
-      appointment: appointment.val(),
-      duration: {
+      job_use_id: Meteor.userId(),
+      job_enterpriseName: enterName.val(),
+      job_appointment: appointment.val(),
+      job_duration: {
         time: duration.val(),
         type: (time == 'D') ? 'Dias':
               (time == 'M') ? 'Meses' : 'Años'
       }
     }
-    Meteor.users.update({ _id: Meteor.userId() },{ $push: { 'profile.jobs': job }})
+    Job.insert(job)
     $('#collapsibleJob').collapsible('close', 0)
     jobAdding.set(false)
     $('.jblabels').removeClass('active')

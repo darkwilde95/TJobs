@@ -2,7 +2,7 @@
   <ul class="collection with-header" style="margin-bottom: 0px;">
     <li class="collection-header"><h5>Estudios</h5></li>
     {{#if hasStudies}}
-      {{#each s in currentUser.profile.studies}}
+      {{#each s in userStudies}}
         <li class="collection-item">{{ >study item=s }}</li>
       {{/each}}
     {{else}}
