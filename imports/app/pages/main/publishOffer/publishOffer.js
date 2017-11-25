@@ -2,27 +2,19 @@ import { Meteor } from 'meteor/meteor'
 import { City } from '/imports/db/city'
 import { Template } from 'meteor/templating'
 import { ReactiveVar } from 'meteor/reactive-var'
+import { JobOffer } from '/imports/db/jobOffer'
 import { BranchOffice } from '/imports/db/branchOffice'
 
 import './publishOffer.html'
 
 var validPublish = new ReactiveVar(false)
-var validSalary = new ReactiveVar(false)
+var validSalary = new ReactiveVar(true)
 var requerimentsList = new ReactiveVar([])
 
 function newOfferEvent(event){
-  var addRequeriment = $('#addRequeriment')
   var submit = $('#submitPublish')
   var salary = $('#salary').val()
-  var requirements = $('#requirements').val()
-  var BOffice = (Meteor.user().profile.branchOffices.length > 0) ?
-                $('#OfferLocation').val() : true
-  if(requirements && BOffice){
-    if(addRequeriment.hasClass('disabled')) addRequeriment.removeClass('disabled')
-  }else{
-    if(!addRequeriment.hasClass('disabled')) addRequeriment.addClass('disabled')
-  }
-  if(salary > 0){
+  if(salary > 0 || salary == ''){
     validSalary.set(true)
   }else{
     validSalary.set(false)
@@ -33,7 +25,13 @@ function newOfferEvent(event){
   }
   var name = $('#offerName').val()
   var description = $('#description').val()
-  if(name && description && requerimentsList.get().length > 0){
+  var BOffices
+  if(BranchOffice.find({bra_ent_id: Meteor.userId()}).count() > 0){
+    BOffices = $('#OfferLocation').val()
+  }else{
+    BOffices = true
+  }
+  if(salary && name && description && BOffices && requerimentsList.get().length > 0){
     validPublish.set(true)
     if(submit.hasClass('disabled')) submit.removeClass('disabled')
     return false
@@ -44,12 +42,23 @@ function newOfferEvent(event){
 }
 
 Template.publishOffer.onCreated(function(){
-  validSalary.set(false)
+  validSalary.set(true)
   validPublish.set(false)
   $(document).ready(function(){
     $('select').not('.disabled').material_select()
     $('#OfferLocation').on('change', function(event) {
       newOfferEvent(event)
+    })
+    $('.chips-placeholder').material_chip({
+      placeholder: 'Agregar requerimientos',
+    })
+    $('.chips-placeholder').on('chip.add', function(e, chip){
+      requerimentsList.get().push(chip.tag)
+    })
+    $('.chips-placeholder').on('chip.delete', function(e, chip){
+      var arr = requerimentsList.get()
+      arr.splice(arr.indexOf(chip),1)
+      requerimentsList.set(arr)
     })
   })
 })
@@ -65,7 +74,12 @@ Template.publishOffer.helpers({
     return BranchOffice.find({bra_ent_id: Meteor.userId()})
   },
   principalLocation: function(){
-    return City.findOne({_id: Meteor.user().profile.location}).cit_name
+    var user = Meteor.user()
+    if(user){
+      return City.findOne({_id: user.profile.location}).cit_name
+    }else{
+      return ''
+    }
   },
   OLocation: function(location){
     var city = City.findOne({_id: location})
@@ -78,31 +92,41 @@ Template.publishOffer.helpers({
 })
 
 Template.publishOffer.events({
-  'click #addRequeriment'(event){
-    event.preventDefault()
-    var requirement = $('#requirements')
-    requerimentsList.get().push(requirement.val())
-    requirement.val('')
-    newOfferEvent(event)
-  },
   'click #submitPublish'(event){
     event.preventDefault()
-    var name = $('#offerName').val()
-    var salary = $('#salary').val()
-    var description = $('#description').val()
-    var BOffice = (Meteor.user().profile.branchOffices.length > 0) ?
-                  ('#OfferLocation').val() : Meteor.user().profile.location
-    var offer = {
-      job_name: name,
-      job_ent_id: Meteor.userId(),
-      job_id_location: BOffice,
-      job_dateTime: new Date().getTime(),
-      job_salary: salary,
-      job_requirements: requerimentsList.get(),
-      job_description: description
+    var name = $('#offerName')
+    var salary = $('#salary')
+    var description = $('#description')
+    var offerLocation = $('#OfferLocation')
+    var BOffice = BranchOffice.findOne({_id: offerLocation.val()})
+    if(!BOffice){
+      BOffice = {
+        bra_address: Meteor.user().profile.address,
+        bra_location: Meteor.user().profile.location
+      }
     }
-    Meteor.call('publishNewOffer', offer, (error, result) => {
+    var offer = {
+      job_name: name.val(),
+      job_ent_id: Meteor.userId(),
+      job_id_location: BOffice.bra_location,
+      job_address: BOffice.bra_address,
+      job_dateTime: new Date().getTime(),
+      job_salary: salary.val(),
+      job_requirements: requerimentsList.get(),
+      job_description: description.val()
+    }
+    JobOffer.insert(offer)
+    validSalary.set(true)
+    offerLocation.prop('selectedIndex', 0)
+    offerLocation.material_select()
+    name.val('')
+    salary.val('')
+    description.val('')
+    requerimentsList.set([])
+    $('.chips-placeholder').material_chip({
+      placeholder: 'Agregar requerimientos',
     })
+    $('#submitPublish').addClass('disabled')
   },
   'keyup, keydown'(event){
     newOfferEvent(event)

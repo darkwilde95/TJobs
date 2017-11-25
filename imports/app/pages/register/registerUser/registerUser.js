@@ -5,26 +5,26 @@ import { ReactiveVar } from 'meteor/reactive-var'
 import './registerUser.html'
 
 var regUserP = new ReactiveVar(0)
-var regUserN = new ReactiveVar(false)
+var regUserN = new ReactiveVar(true)
 
 function registerUserEvent(event){
   var password1 = $('#registerU_password').val()
   var password2 = $('#registerU_password2').val()
   var userNumber = $('#registerU_number').val()
   var submit = $('#registerU_submit')
-  if(password1.length < 8){
-    regUserP.set(1) //Error 1 es de tamaño de contraseña
+  if(password1.length < 8 && password1 != ''){
+    regUserP.set(1)
   }else if(password1 != password2) {
-    regUserP.set(2) //Error 2 es de diferencia de contraseña
+    regUserP.set(2)
   }else{
-    regUserP.set(0) //No hay error en contraseñas
+    regUserP.set(0)
   }
-  if(userNumber >= 1000000 && userNumber <= 9999999999){
-    regUserN.set(false) //No hay error en el numero
+  if(userNumber >= 1000000 && userNumber <= 9999999999 || userNumber == ''){
+    regUserN.set(true)
   }else{
-    regUserN.set(true)  //El numero no es valido
+    regUserN.set(false)
   }
-  if(regUserP.get() > 0 || regUserN.get()){
+  if(regUserP.get() > 0 || !regUserN.get()){
     if(!submit.hasClass('disabled')) submit.addClass('disabled')
     if(event.keyCode == 13){
       event.preventDefault()
@@ -38,7 +38,7 @@ function registerUserEvent(event){
   var userGender = $('#registerU_gender').val()
   var userEmail = $('#registerU_email').val()
   if(userName && userLastName1 && userLastName2 && userLocation && userGender
-    && userNumber && userEmail){
+    && userNumber && userEmail && password1){
     if(submit.hasClass('disabled')) submit.removeClass('disabled')
     return false
   }
@@ -50,7 +50,7 @@ function registerUserEvent(event){
 
 Template.registerUser.onCreated(function(){
   regUserP.set(0)
-  regUserN.set(false)
+  regUserN.set(true)
   $(document).ready(function(){
     $('#registerU_gender').on('change', function(event) {
       registerUserEvent(event)
@@ -72,11 +72,7 @@ Template.registerUser.helpers({
     }
   },
   registerU_ENum: function(){
-    if(regUserN.get()){
-      return 'Teléfono inválido'
-    }else{
-      return ''
-    }
+    return (regUserN.get()) ? '' : 'Teléfono inválido'
   }
 })
 
@@ -91,7 +87,6 @@ Template.registerUser.events({
     var userNumber = $('#registerU_number').val()
     var userEmail = $('#registerU_email').val()
     var password1 = $('#registerU_password').val()
-    var password2 = $('#registerU_password2').val()
     var userProfile = {
       email: userEmail,
       password: password1,

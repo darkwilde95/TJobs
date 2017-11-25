@@ -5,25 +5,25 @@ import { ReactiveVar } from 'meteor/reactive-var'
 import './jobRegister.html'
 
 var jobAdding = new ReactiveVar(false)
-var durationValid = new ReactiveVar(false)
+var durationValid = new ReactiveVar(true)
 
 function addJobEvent(event) {
   var duration = $('#duration').val()
   var submit = $('#submitJob')
-  if(duration <= 0){
-    if(!submit.hasClass('disabled')) submit.addClass('disabled')
+  if(duration > 0 || duration == ''){
     durationValid.set(true)
+    return false
+  }else{
+    if(!submit.hasClass('disabled')) submit.addClass('disabled')
+    durationValid.set(false)
     if(event.keyCode == 13){
       event.preventDefault()
     }
-    return false
-  }else{
-    durationValid.set(false)
   }
   var time = $('#time').val()
   var enterName = $('#enterName').val()
   var appointment = $('#appointment').val()
-  if(enterName && appointment && time){
+  if(duration && enterName && appointment && time){
     if(submit.hasClass('disabled')) submit.removeClass('disabled')
     return false
   }
@@ -34,7 +34,7 @@ function addJobEvent(event) {
 }
 
 Template.jobRegister.onCreated(function(){
-  durationValid.set(false)
+  durationValid.set(true)
   $(document).ready(function(){
     $('select').not('.disabled').material_select()
     $('#time').on('change', function(event) {
@@ -52,7 +52,7 @@ Template.jobRegister.helpers({
     }
   },
   durationError: function(){
-    return (durationValid.get())? 'Duración invalida' : ''
+    return (durationValid.get())? '' : 'Duración invalida'
   }
 })
 
@@ -62,7 +62,7 @@ Template.jobRegister.events({
       jobAdding.set(true)
     }else{
       jobAdding.set(false)
-      durationValid.set(false)
+      durationValid.set(true)
       $('.jblabels').removeClass('active')
       $('#enterName').val('')
       $('#appointment').val('')
@@ -74,15 +74,15 @@ Template.jobRegister.events({
     var enterName = $('#enterName')
     var appointment = $('#appointment')
     var duration = $('#duration')
-    var time = $('#time').val()
+    var time = $('#time')
     var job = {
       job_use_id: Meteor.userId(),
       job_enterpriseName: enterName.val(),
       job_appointment: appointment.val(),
       job_duration: {
         time: duration.val(),
-        type: (time == 'D') ? 'Dias':
-              (time == 'M') ? 'Meses' : 'Años'
+        type: (time.val() == 'D') ? 'Dias':
+              (time.val() == 'M') ? 'Meses' : 'Años'
       }
     }
     Job.insert(job)
@@ -92,7 +92,9 @@ Template.jobRegister.events({
     enterName.val('')
     appointment.val('')
     duration.val('')
-    durationValid.set(false)
+    time.prop('selectedIndex', 0)
+    time.material_select()
+    durationValid.set(true)
     $('#submitJob').addClass('disabled')
   },
   'keyup, keydown'(event){

@@ -7,6 +7,7 @@ jobOffer.schema = new SimpleSchema({
   job_name: {type: String},
   job_ent_id: {type: String},
   job_id_location: {type: String},
+  job_address: {type: String},
   job_dateTime: {type: Number},
   job_salary: {type: Number},
   job_requirements: {type: [String]},
@@ -21,6 +22,22 @@ if(Meteor.isServer){
   })
   Meteor.publish('JobOfferEnterprise', function(enterpriseId){
     return jobOffer.find({job_ent_id: enterpriseId})
+  })
+  jobOffer.allow({
+    insert: function(userId, doc){
+      return userId && doc.job_ent_id === userId;
+    },
+    update: function(userId, doc, fields, modifier){
+      return doc.job_ent_id === userId;
+    },
+    remove: function(userId, doc){
+      return doc.job_ent_id === userId;
+    }
+  })
+  jobOffer.deny({
+    update: function(userId, doc, fields, modifier){
+      return _.contains(fields, 'job_ent_id');
+    }
   })
 }
 

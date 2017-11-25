@@ -10,7 +10,7 @@ var numberError = new ReactiveVar(false)
 function addBOEvent(event){
   var number = $('#numberBO').val()
   var submit = $('#submitBranchOffer')
-  if(number >= 1000000 && number <= 9999999999){
+  if(number >= 1000000 && number <= 9999999999 || number == ''){
     numberError.set(false)
   }else{
     numberError.set(true)
@@ -52,11 +52,7 @@ Template.branchOfficeRegister.helpers({
     }
   },
   telError: function(){
-    if(numberError.get()){
-      return 'Teléfono inválido'
-    }else{
-      return ''
-    }
+    return (numberError.get()) ? 'Teléfono inválido' : ''
   }
 })
 

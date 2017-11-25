@@ -3,23 +3,23 @@
     <div class="col s12">
       <div class="card">
         <div class="card-content">
-          <span class="card-title amber-text text-darken-4">
+          <span class="card-title secundary-color-text">
             <b>{{ item.job_name }}</b>
           </span>
           <h6>{{ enterpriseName item.job_ent_id }}</h6>
           <span>
-            <i class="tiny material-icons">location_on</i> 
+            <i class="tiny material-icons">&#xE0C8;</i>
             {{ locationName item.job_id_location }}
           </span>
           <br>
           <span>
-            <i class="tiny material-icons">access_time</i> {{ dateTimeOffer }}
+            <i class="tiny material-icons">&#xE192;</i> {{ dateTimeOffer }}
           </span>
           <br>
           <p>{{ item.job_description }}</p>
         </div>
         <div class="card-action" style="text-align: right;">
-          <a href="#" style="color: var(--secundary-color);">ver detalles</a>
+          <a href="#" class="secundary-color-text">ver detalles</a>
         </div>
       </div>
     </div>

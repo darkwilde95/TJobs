@@ -1,50 +1,68 @@
-:root{
-  --primary-color: #424242;
-  --light-primary-color: #6d6d6d;
-  --dark-primary-color: #1b1b1b;
-  --secundary-color: #ff6f00;
-  --background-color: #eeeeee;
-}
+$primary-color: #424242;
+$light-primary-color: #6d6d6d;
+$dark-primary-color: #1b1b1b;
+$secundary-color: #ff6f00;
+$background-color: #eeeeee;
 
-// @font-face {
-//   font-family: fontName;
-//   src: url("/fonts/font.otf/ttf");
-// }
+/*@font-face {
+  font-family: fontName;
+  src: url("/fonts/font.otf/ttf");
+}*/
 
 .primary-color {
-  background-color: var(--primary-color);
+  background-color: $primary-color !important;
 }
 
 .light-primary-color {
-  background-color: var(--light-primary-color);
+  background-color: $light-primary-color !important;
 }
 
 .dark-primary-color {
-  background-color: var(--dark-primary-color);
+  background-color: $dark-primary-color !important;
 }
 
 .secundary-color {
-  background-color: var(--secundary-color);
+  background-color: $secundary-color !important;
 }
 
 .background-app-color {
-  background-color: var(--background-color);
+  background-color: $background-color !important;
+}
+
+.primary-color-text {
+  color: $primary-color !important;
+}
+
+.light-primary-color-text {
+  color: $light-primary-color !important
+}
+
+.dark-primary-color-text {
+  color: $dark-primary-color !important;
+}
+
+.secundary-color-text {
+  color: $secundary-color !important;
 }
 
 body {
-  @extend .background-app-color;
+  background-color: $background-color !important;
 }
 
 .appName {
   margin: 0px;
   padding-top: 29.4px;
   padding-bottom: 23.52px;
-  background-color: var(--primary-color);
+  background-color: $primary-color;
 }
 
 div.nav-content ul li {
   text-align: center;
   width: 25%;
+}
+
+nav .brand-logo {
+  -webkit-transform: translateX(-50%) !important;
 }
 
 div.collection a i {
@@ -60,34 +78,71 @@ th, td {
 }
 
 .input-field label {
-  color: var(--secundary-color) !important;
+  color: $secundary-color !important;
+  -webkit-transition: -webkit-transform .2s ease-out;
+  -webkit-transform: translateY(12px);
+  -webkit-transform-origin: 0% 100%;
+}
+
+.input-field label:not(.label-icon).active {
+  -webkit-transform: translateY(-14px) scale(.8);
+  -webkit-transform-origin: 0 0;
 }
 
 .input-field input:focus + label {
-  color: var(--secundary-color) !important;
+  color: $secundary-color !important;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: $secundary-color !important;
 }
 
 .input-field input:focus {
-  border-bottom: 1px solid var(--secundary-color) !important;
-  box-shadow: 0 1px 0 0 var(--secundary-color) !important;
+  border-bottom: 1px solid $secundary-color !important;
+  box-shadow: 0 1px 0 0 $secundary-color !important;
+}
+
+.chips .input{
+  width: 150px !important;
+}
+
+.chips.focus {
+  border-bottom: 1px solid $secundary-color !important;
+  box-shadow: 0 1px 0 0 $secundary-color !important;
+}
+
+.chips .chip {
+  background-color: $light-primary-color !important;
+  color: white;
+}
+
+.chips .selected{
+  background-color: $secundary-color !important;
 }
 
 textarea.materialize-textarea:focus{
-  border-bottom: 1px solid var(--secundary-color) !important;
-  box-shadow: 0 1px 0 0 var(--secundary-color) !important;
+  border-bottom: 1px solid $secundary-color !important;
+  box-shadow: 0 1px 0 0 $secundary-color !important;
 }
 
 .tabs .indicator {
-  background-color: var(--secundary-color) !important;
+  background-color: $secundary-color !important;
 }
 
 ul.dropdown-content li span {
-  color: var(--main-color) !important;
+  color: $primary-color !important;
   white-space: nowrap !important;
 }
 
+.loading{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+}
+
 .spinner-yellow, .spinner-yellow-only {
-  border-color: var(--secundary-color);
+  border-color: $secundary-color;
 }
 
 .collapsible {

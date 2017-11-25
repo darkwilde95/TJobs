@@ -2,7 +2,7 @@
   <ul id="collapsibleJob" class="collapsible" data-collapsible="accordion"
                                                         style="margin-top: 0px;">
     <li id="collapJob">
-      <div class="collapsible-header" style="color: var(--secundary-color)">
+      <div class="collapsible-header secundary-color-text">
         <i class="material-icons">{{ job.icon }}</i> {{ job.message }}
       </div>
       <div class="collapsible-body white" style="text-align: right;">
@@ -22,7 +22,7 @@
               <h6 class="red-text center">{{ durationError }}</h6>
             </div>
             <div class="input-field col s6">
-              <select class="amber-text text-darken-4" id="time" required>
+              <select class="secundary-color-text" id="time" required>
                 <option value="" disabled selected>Elegir un intervalo</option>
                 <option value="D">Días</option>
                 <option value="M">Meses</option>

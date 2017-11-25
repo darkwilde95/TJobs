@@ -2,7 +2,7 @@
   <ul  id="collapsibleStudy" class="collapsible" data-collapsible="accordion"
                                                         style="margin-top: 0px;">
     <li id="collapStudy">
-      <div class="collapsible-header" style="color: var(--secundary-color)">
+      <div class="collapsible-header secundary-color-text">
         <i class="material-icons">{{ study.icon }}</i> {{ study.message }}
       </div>
       <div class="collapsible-body white" style="text-align: right;">
@@ -17,7 +17,7 @@
               <label for="title" class="stlabels">Título obtenido</label>
             </div>
             <div class="input-field">
-              <input type="number" id="year" min="1950" max="{{maxYear}}" required>
+              <input type="number" id="year" min="1950" max="{{ maxYear }}" required>
               <label for="instName" class="stlabels">Año de graduación</label>
               <h6 class="red-text center">{{ yearError }}</h6>
             </div>

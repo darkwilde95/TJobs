@@ -9,28 +9,23 @@
       <div class="input-field col s12">
         <input type="number" id="salary" required>
         <label for="salary">Salario</label>
+        <h6 class="red-text center">{{ salaryError }}</h6>
       </div>
       <div class="input-field col s12">
         <textarea class="materialize-textarea" id="description"></textarea>
         <label for="description">Descripción</label>
       </div>
-      <div class="input-field col s10">
-        <input type="text" id="requirements">
-        <label for="requirements">Requerimientos</label>
-      </div>
-      <div class="input-field col s2">
-        <button class="btn-floating waves-effect waves-orange secundary-color disabled"
-                  id="addRequeriment"><i class="material-icons">add</i></button>
+      <div class="input-field col s12">
+        <div class="chips chips-placeholder"></div>
       </div>
       {{ #if hasBOffices }}
         <div class="input-field col s12">
-          <select class="amber-text text-darken-4" id="OfferLocation" required>
+          <select class="secundary-color-text" id="OfferLocation" required>
             <option value="" disabled selected>Elegir una Sucursal</option>
             <option value="{{ principalLocation }} {{ currentUser.profile.address }}"><!--
             -->{{ principalLocation }} - {{ currentUser.profile.address }}</option>
             {{ #each BOffices }}
-              <option value="{{ OLocation location }} {{ address }}"><!--
-              -->{{ OLocation bra_location }} - {{ bra_address }}</option>
+              <option value="{{_id}}">{{ OLocation bra_location }} - {{ bra_address }}</option>
             {{/each}}
             <label>Elegir una Sucursal</label>
           </select>
