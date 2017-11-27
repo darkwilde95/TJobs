@@ -6,20 +6,26 @@
           <span class="card-title secundary-color-text">
             <b>{{ item.job_name }}</b>
           </span>
-          <h6>{{ enterpriseName item.job_ent_id }}</h6>
-          <span>
+          <span class="secundary-color-text">
+            {{ enterpriseName item.job_ent_id }}
+          </span>
+          <span class="grey-text">
+             -
             <i class="tiny material-icons">&#xE0C8;</i>
             {{ locationName item.job_id_location }}
           </span>
           <br>
-          <span>
-            <i class="tiny material-icons">&#xE192;</i> {{ dateTimeOffer }}
+          <span class="grey-text">
+            <i class="tiny material-icons">&#xE192;</i>
+            {{ dateTimeOffer item.job_dateTime }}
           </span>
           <br>
           <p>{{ item.job_description }}</p>
         </div>
-        <div class="card-action" style="text-align: right;">
-          <a href="#" class="secundary-color-text">ver detalles</a>
+        <div class="card-action center">
+          <a href="{{ pathFor 'offerActivity' offerId=item._id }}" class="secundary-color-text">
+            Ver detalles
+          </a>
         </div>
       </div>
     </div>

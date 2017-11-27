@@ -62,7 +62,11 @@ Router.route('/register',{
 
 Router.route('/main', {
   name: 'mainActivity',
-  template: 'main',
+  layoutTemplate: 'layout',
+  yieldRegions: {
+    'mainHeader': { to: 'header'},
+    'mainContent': { to: 'main'}
+  },
   subscriptions: function(){
     var user = Meteor.user()
     if(user){
@@ -70,7 +74,7 @@ Router.route('/main', {
         this.subscribe('EnterpriseNames').wait()
         this.subscribe('Job', Meteor.userId()).wait()
         this.subscribe('Study', Meteor.userId()).wait()
-        this.subscribe('JobOffer').wait()
+        this.subscribe('JobOffer', null).wait()
       }else{
         this.subscribe('BranchOffice', Meteor.userId()).wait()
         this.subscribe('JobOfferEnterprise', Meteor.userId()).wait()
@@ -95,6 +99,72 @@ Router.route('/main', {
   data: function() {
     return {
       'city': City.find({})
+    }
+  }
+})
+Router.route('/offer/:offerId', {
+  name:'offerActivity',
+  layoutTemplate: 'layout',
+  yieldRegions: {
+    'offerDetail': { to: 'main'}
+  },
+  subscriptions: function(){
+    this.subscribe('City').wait()
+    this.subscribe('EnterpriseNames').wait()
+    this.subscribe('JobOffer', this.params.offerId).wait()
+  },
+  onBeforeAction: function(){
+    if(Meteor.userId()){
+      this.next()
+    }else{
+      this.redirect('loginActivity')
+    }
+  },
+  action: function(){
+    if(this.ready()){
+      this.render()
+    }else{
+      this.render('loading')
+    }
+  },
+  data: function(){
+    return JobOffer.findOne({_id: this.params.offerId})
+  }
+})
+
+Router.route('/search', {
+  name: 'searchActivity',
+  layoutTemplate: 'layout',
+  yieldRegions: {
+    'search': { to: 'main'}
+  },
+  subscriptions: function(){
+    this.subscribe('JobOffer', null).wait()
+  },
+  onBeforeAction: function(){
+    if(Meteor.userId()){
+      if(_.size(this.params.query) > 0){
+        this.next()
+      }else{
+        this.redirect('mainActivity')
+      }
+    }else{
+      this.redirect('loginActivity')
+    }
+  },
+  action: function(){
+    if(this.ready()){
+      this.render()
+    }else{
+      this.render('loading')
+    }
+  },
+  data: function(){
+    var q = this.params.query.q
+    var r = JobOffer.find({job_name: q})
+    return {
+      offerMatch: r,
+      hasOffers: r.count() > 0
     }
   }
 })

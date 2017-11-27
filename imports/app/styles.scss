@@ -69,8 +69,12 @@ div.collection a i {
   vertical-align: middle;
 }
 
-.content {
+.contentMain {
   margin-top: 64px;
+}
+
+.content {
+  margin-top: 16px;
 }
 
 th, td {
@@ -155,4 +159,8 @@ ul.dropdown-content li span {
 
 .collapsible-body {
   padding-top: 16px !important;
+}
+
+.card .card-action a:not(.btn):not(.btn-large):not(.btn-large):not(.btn-floating){
+  margin: 0px !important;
 }

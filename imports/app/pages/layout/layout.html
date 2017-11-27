@@ -1,0 +1,41 @@
+<template name="layout">
+  <header>
+    <div class="navbar-fixed">
+      <nav >
+        <div class="nav-wrapper dark-primary-color">
+          {{ #if toSearch }}
+            {{ >searchForm}}
+          {{ else }}
+            {{ #unless inMain }}
+              <ul class="left">
+                <li>
+                  <a href="#" id="backButton"><i class="material-icons">&#xE5C4;</i></a>
+                </li>
+              </ul>
+            {{ /unless }}
+            <a href="{{ pathFor 'mainActivity' }}" class="brand-logo">TJobs</a>
+            <ul class="right">
+              <li>
+                <a href="#" id="searchButton"><i class="material-icons">search</i></a>
+              </li>
+            </ul>
+          {{ /if }}
+        </div>
+        {{ >yield 'header'}}
+      </nav>
+    </div>
+  </header>
+  <main>
+    {{ >yield 'main'}}
+  </main>
+</template>
+
+<template name="searchForm">
+  <form>
+    <div class="input-field">
+      <input id="search" type="search" placeholder="Buscar por profesión o cargo"
+                                                              required autofocus>
+      <i id="close" class="material-icons">close</i>
+    </div>
+  </form>
+</template>

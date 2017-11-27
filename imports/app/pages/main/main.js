@@ -4,19 +4,26 @@ import { Meteor } from 'meteor/meteor'
 import './main.html'
 import './home/home'
 import './resume/resume'
-import './search/search'
 import './settings/settings'
 import './userProfile/userProfile'
 import './publishOffer/publishOffer'
+import './notifications/notifications'
 import './enterpriseProfile/enterpriseProfile'
 
-Template.main.onCreated(function(){
+Template.mainHeader.onCreated(function(){
   $(document).ready(function(){
     $('ul.tabs').tabs();
   })
 })
 
-Template.main.helpers({
+Template.mainHeader.helpers({
+  chooseType: function(){
+    var aux = Meteor.user()
+    return (aux) ? aux.profile.typeProfile == 'user' : false
+  }
+})
+
+Template.mainContent.helpers({
   chooseType: function(){
     var aux = Meteor.user()
     return (aux) ? aux.profile.typeProfile == 'user' : false

@@ -1,3 +1,6 @@
 import './main/main'
 import './login/login'
+import './layout/layout'
+import './search/search'
 import './register/register'
+import './offerDetail/offerDetail'

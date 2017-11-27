@@ -1,0 +1,14 @@
+<template name="search">
+  <div class="container content">
+    {{ #if hasOffers }}
+      {{ #each o in offerMatch }}
+        {{ >offerResume item=o }}
+      {{ /each }}
+    {{ else }}
+      <h5 class="grey-text" style="text-align: center; position: absolute;
+      top: 55%; left: 50%; -webkit-transform: translate(-50%, -50%);">
+        No hay ofertas que coinciden con la busqueda
+      </h5>
+    {{ /if }}
+  </div>
+</template>
