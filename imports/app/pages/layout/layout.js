@@ -38,14 +38,27 @@ Template.layout.helpers({
 })
 
 Template.layout.events({
-  'click #backButton'(event){
+  'click .backButton'(event){
     event.preventDefault()
-    doSearch.set(false)
     window.history.go(-1)
   },
   'click #searchButton'(event){
     event.preventDefault()
     doSearch.set(true)
+  },
+  'click #close'(){
+    var s = $('#search')
+    s.val('')
+    s.val('').removeAttr('placeholder')
+    $('.input-field').one('transitionend webkitTransitionEnd', function(event){
+      doSearch.set(false)
+    })
+  }
+})
+
+Template.searchForm.helpers({
+  inMain: function(){
+    return Router.current().route.getName() == 'mainActivity'
   }
 })
 
@@ -55,5 +68,13 @@ Template.searchForm.events({
     var term = 'q='+$('#search').val()
     Router.go('searchActivity', {} ,{ query: term })
 
-  }
+  },
+  'click .backButton'(event){
+    event.preventDefault()
+    var s = $('#search')
+    s.val('')
+    s.removeAttr('placeholder')
+    doSearch.set(false)
+    window.history.go(-1)
+  },
 })

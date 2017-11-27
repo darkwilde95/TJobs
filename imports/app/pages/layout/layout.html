@@ -9,7 +9,7 @@
             {{ #unless inMain }}
               <ul class="left">
                 <li>
-                  <a href="#" id="backButton"><i class="material-icons">&#xE5C4;</i></a>
+                  <a href="#" class="backButton"><i class="material-icons">&#xE5C4;</i></a>
                 </li>
               </ul>
             {{ /unless }}
@@ -34,7 +34,10 @@
   <form>
     <div class="input-field">
       <input id="search" type="search" placeholder="Buscar por profesión o cargo"
-                                                              required autofocus>
+      style="line-height: normal;" required autofocus>
+      {{ #unless inMain }}
+        <i class="backButton material-icons">&#xE5C4;</i>
+      {{ /unless }}
       <i id="close" class="material-icons">close</i>
     </div>
   </form>

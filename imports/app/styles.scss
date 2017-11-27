@@ -106,6 +106,25 @@ th, td {
   box-shadow: 0 1px 0 0 $secundary-color !important;
 }
 
+.nav-wrapper .input-field input[type=search] {
+  height: inherit;
+  padding-left: 54px !important;
+  width: calc(100% - 54px) !important;
+  border: 0;
+  box-shadow: none;
+}
+
+.input-field input[type=search] ~ .backButton.material-icons{
+  right: 0 !important;
+  left: 1rem !important;
+  color: white;
+  width: -webkit-max-content;
+}
+
+.input-field input[type=search]:focus ~ .backButton.material-icons{
+  color: #444;
+}
+
 .chips .input{
   width: 150px !important;
 }

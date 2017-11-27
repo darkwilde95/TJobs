@@ -11,17 +11,26 @@ jobOffer.schema = new SimpleSchema({
   job_dateTime: {type: Number},
   job_salary: {type: Number},
   job_requirements: {type: [String]},
-  job_description: {type: String}
+  job_description: {type: String},
+  job_search: {type: String}
 })
 
 jobOffer.attachSchema(jobOffer.schema)
 
 if(Meteor.isServer){
+  jobOffer._ensureIndex({job_search: "text"})
   Meteor.publish('JobOffer', function(offerId){
     return (offerId) ? jobOffer.find({_id: offerId}) : jobOffer.find({})
   })
   Meteor.publish('JobOfferEnterprise', function(enterpriseId){
     return jobOffer.find({job_ent_id: enterpriseId})
+  })
+  Meteor.publish('JobOfferSearch', function(query){
+    if(query){
+      return jobOffer.find({ $text: { $search: query } })
+    }else{
+      return jobOffer.find({})
+    }
   })
   jobOffer.allow({
     insert: function(userId, doc){

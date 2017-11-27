@@ -113,7 +113,8 @@ Template.publishOffer.events({
       job_dateTime: new Date().getTime(),
       job_salary: salary.val(),
       job_requirements: requerimentsList.get(),
-      job_description: description.val()
+      job_description: description.val(),
+      job_search: name.val() + ' ' + description.val()
     }
     JobOffer.insert(offer)
     validSalary.set(true)

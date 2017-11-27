@@ -1,6 +1,7 @@
 <template name="search">
   <div class="container content">
     {{ #if hasOffers }}
+      <h4 class="secundary-color-text">Resultados</h4>
       {{ #each o in offerMatch }}
         {{ >offerResume item=o }}
       {{ /each }}

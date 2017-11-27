@@ -139,7 +139,9 @@ Router.route('/search', {
     'search': { to: 'main'}
   },
   subscriptions: function(){
-    this.subscribe('JobOffer', null).wait()
+    this.subscribe('City').wait()
+    this.subscribe('EnterpriseNames').wait()
+    this.subscribe('JobOfferSearch', this.params.query.q).wait()
   },
   onBeforeAction: function(){
     if(Meteor.userId()){
@@ -160,8 +162,7 @@ Router.route('/search', {
     }
   },
   data: function(){
-    var q = this.params.query.q
-    var r = JobOffer.find({job_name: q})
+    var r = JobOffer.find({},{sort: { job_dateTime: -1}})
     return {
       offerMatch: r,
       hasOffers: r.count() > 0
