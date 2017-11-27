@@ -1,0 +1,21 @@
+<template name="notification">
+  <li class="collection-item">
+    <div class="row valign-wrapper" style="margin-bottom: 0px;">
+      <div class="col s1" style="padding: 0px; height: inherit;">
+        <span>
+          {{ #if item.not_seen }}
+            <i class="material-icons">done</i>
+          {{ else }}
+            <i class="material-icons">&#xE05E;</i>
+          {{ /if }}
+        </span>
+      </div>
+      <div class="col s11">
+        <span>{{ item.not_information }}</span><br>
+        <span class="grey-text">
+          <i class="tiny material-icons">&#xE192;</i> {{ dateTimeNotif item.not_dateTime }}
+        </span>
+      </div>
+    </div>
+  </li>
+</template>

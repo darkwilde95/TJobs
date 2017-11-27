@@ -1,6 +1,8 @@
-import { JobOffer } from '/imports/db/jobOffer'
-import { City } from '/imports/db/city'
 import { Meteor } from 'meteor/meteor'
+import { City } from '/imports/db/city'
+import { Session } from 'meteor/session'
+import { JobOffer } from '/imports/db/jobOffer'
+import { Notification } from '/imports/db/notification'
 
 import './pages'
 import './components'
@@ -32,6 +34,7 @@ Router.route('/login',{
     }else{
       this.render()
     }
+    Session.set('route', Router.current().route.getName())
   }
 })
 
@@ -54,6 +57,7 @@ Router.route('/register',{
     } else {
       this.render('loading')
     }
+    Session.set('route', Router.current().route.getName())
   },
   data: function() {
     return {'city': City.find({})}
@@ -71,10 +75,11 @@ Router.route('/main', {
     var user = Meteor.user()
     if(user){
       if(user.profile.typeProfile == 'user'){
+        this.subscribe('JobOffer', null).wait()
         this.subscribe('EnterpriseNames').wait()
         this.subscribe('Job', Meteor.userId()).wait()
         this.subscribe('Study', Meteor.userId()).wait()
-        this.subscribe('JobOffer', null).wait()
+        this.subscribe('Notification', null).wait()
       }else{
         this.subscribe('BranchOffice', Meteor.userId()).wait()
         this.subscribe('JobOfferEnterprise', Meteor.userId()).wait()
@@ -95,10 +100,26 @@ Router.route('/main', {
     }else{
       this.render('loading')
     }
+    Session.set('route', Router.current().route.getName())
   },
   data: function() {
-    return {
-      'city': City.find({})
+    var user = Meteor.user()
+    if(user){
+      if(user.profile.typeProfile == 'user'){
+        var jo = JobOffer.find({})
+        var n = Notification.find({})
+        return {
+          city: City.find({}),
+          hasOffers: jo.count() > 0,
+          jobOffers: jo,
+          hasNotifications: n.count() > 0,
+          notifications: n
+        }
+      }else{
+        return {
+          city: City.find({}),
+        }
+      }
     }
   }
 })
@@ -126,6 +147,7 @@ Router.route('/offer/:offerId', {
     }else{
       this.render('loading')
     }
+    Session.set('route', Router.current().route.getName())
   },
   data: function(){
     return JobOffer.findOne({_id: this.params.offerId})
@@ -160,6 +182,7 @@ Router.route('/search', {
     }else{
       this.render('loading')
     }
+    Session.set('route', Router.current().route.getName())
   },
   data: function(){
     var r = JobOffer.find({},{sort: { job_dateTime: -1}})

@@ -1,3 +1,4 @@
+import { Session } from 'meteor/session'
 import { Template } from 'meteor/templating'
 import { ReactiveVar } from 'meteor/reactive-var'
 
@@ -30,7 +31,7 @@ Template.searchForm.onRendered(function(){
 
 Template.layout.helpers({
   inMain: function(){
-    return Router.current().route.getName() == 'mainActivity'
+    return Session.get('route') == 'mainActivity'
   },
   toSearch: function(){
     return doSearch.get()
@@ -58,7 +59,7 @@ Template.layout.events({
 
 Template.searchForm.helpers({
   inMain: function(){
-    return Router.current().route.getName() == 'mainActivity'
+    return Session.get('route') == 'mainActivity'
   }
 })
 

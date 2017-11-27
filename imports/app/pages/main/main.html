@@ -34,18 +34,23 @@
 </template>
 
 <template name="mainContent">
-  <div class="container contentMain">
-    {{ #if chooseType }}
+  <div id="settings" class="divList" style="display: none;">
+    {{ >settings }}
+  </div>
+  {{ #if chooseType }}
+    <div id="notification" class="divList" style="display: none;">
+      {{ >notifications }}
+    </div>
+    <div class="container contentMain">
       <div id="home">
         {{ >home }}
-      </div>
-      <div id="notification" style="display: none;">
-        {{ >notifications }}
       </div>
       <div id="userProfile" style="display: none;">
         {{ >userProfile }}
       </div>
-    {{ else }}
+    </div>
+  {{ else }}
+    <div class="container contentMain">
       <div id="resume">
         {{ >resume }}
       </div>
@@ -55,9 +60,6 @@
       <div id="enterpriseProfile" style="display: none;">
         {{ >enterpriseProfile }}
       </div>
-    {{ /if }}
-    <div id="settings" style="display: none;">
-      {{ >settings }}
     </div>
-  </div>
+  {{ /if }}
 </template>
