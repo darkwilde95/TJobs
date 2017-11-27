@@ -19,7 +19,7 @@ if(Meteor.isServer){
   })
   offerApply.allow({
     insert: function(userId, doc){
-      return userId && doc.off_userId === userId && !offerApply.findOne({off_userId: userId})
+      return userId && doc.off_userId === userId
     },
     remove: function(userId, doc){
       return userId && doc.off_userId === userId

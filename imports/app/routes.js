@@ -81,6 +81,7 @@ Router.route('/main', {
         this.subscribe('Study', Meteor.userId()).wait()
         this.subscribe('Notification', null).wait()
       }else{
+        this.subscribe('OfferApplies', Meteor.userId()).wait()
         this.subscribe('BranchOffice', Meteor.userId()).wait()
         this.subscribe('JobOfferEnterprise', Meteor.userId()).wait()
       }
@@ -105,8 +106,8 @@ Router.route('/main', {
   data: function() {
     var user = Meteor.user()
     if(user){
+      var jo = JobOffer.find({})
       if(user.profile.typeProfile == 'user'){
-        var jo = JobOffer.find({})
         var n = Notification.find({})
         return {
           city: City.find({}),
@@ -118,6 +119,8 @@ Router.route('/main', {
       }else{
         return {
           city: City.find({}),
+          hasOffers: jo.count() > 0,
+          jobOffers: jo,
         }
       }
     }

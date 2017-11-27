@@ -1,3 +1,12 @@
 <template name="resume">
-  <h3>soy el template de resumen de aplicados</h3>
+  {{ #if hasOffers }}
+    {{ #each j in jobOffers }}
+      {{ >applicandsOffer item=j }}
+    {{ /each }}
+  {{ else }}
+    <h5 class="grey-text" style="text-align: center; position: absolute;
+    top: 55%; left: 50%; -webkit-transform: translate(-50%, -50%);">
+      No has publicado ofertas
+    </h5>
+  {{ /if }}
 </template>

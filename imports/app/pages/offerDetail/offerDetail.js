@@ -28,8 +28,8 @@ Template.offerDetail.helpers({
     day = (day < 10) ? '0' + day : day
     return day + '/' + month + '/' + year + ' - ' + hour + ':' + min
   },
-  alReadyApply : function(){
-    var aux = OfferApply.findOne({off_userId: Meteor.userId()})
+  alReadyApply : function(offerId){
+    var aux = OfferApply.findOne({ off_userId: Meteor.userId(), off_offerId: offerId })
     return (aux) ? true : false
   }
 })

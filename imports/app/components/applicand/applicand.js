@@ -1,0 +1,1 @@
+import './applicand.html'

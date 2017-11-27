@@ -12,7 +12,7 @@
       {{ /each }}
     </ol>
     <p>{{ job_description }}</p>
-    {{ #if alReadyApply }}
+    {{ #if alReadyApply _id }}
       <button id="cancel" name="button">Cancelar</button>
     {{ else }}
       <button id="apply" name="button">Aplicar</button>

@@ -1,6 +1,8 @@
 import './job/job'
 import './study/study'
 import './loading/loading'
+import './applicand/applicand'
 import './offerResume/offerResume'
 import './branchOffice/branchOffice'
 import './notification/notification'
+import './applicandsOffer/applicandsOffer'

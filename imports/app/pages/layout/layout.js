@@ -40,6 +40,10 @@ Template.layout.helpers({
   },
   toSearch: function(){
     return doSearch.get()
+  },
+  isUser: function(){
+    var aux = Meteor.user()
+    return (aux) ? aux.profile.typeProfile == 'user' : false
   }
 })
 

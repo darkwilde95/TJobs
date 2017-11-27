@@ -4,7 +4,7 @@
       <nav >
         <div class="nav-wrapper dark-primary-color">
           {{ #if toSearch }}
-            {{ >searchForm}}
+            {{ >searchForm }}
           {{ else }}
             {{ #unless inMain }}
               <ul class="left">
@@ -14,11 +14,13 @@
               </ul>
             {{ /unless }}
             <a href="{{ pathFor 'mainActivity' }}" class="brand-logo">TJobs</a>
-            <ul class="right">
-              <li>
-                <a href="#" id="searchButton"><i class="material-icons">search</i></a>
-              </li>
-            </ul>
+            {{ #if isUser}}
+              <ul class="right">
+                <li>
+                  <a href="#" id="searchButton"><i class="material-icons">search</i></a>
+                </li>
+              </ul>
+            {{ /if }}
           {{ /if }}
         </div>
         {{ >yield 'header'}}
