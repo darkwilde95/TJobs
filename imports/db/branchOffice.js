@@ -18,18 +18,18 @@ if(Meteor.isServer){
   })
   branchOffice.allow({
     insert: function(userId, doc){
-      return userId && doc.bra_ent_id === userId;
+      return userId && doc.bra_ent_id === userId
     },
     update: function(userId, doc, fields, modifier){
-      return doc.bra_ent_id === userId;
+      return doc.bra_ent_id === userId
     },
     remove: function(userId, doc){
-      return doc.bra_ent_id === userId;
+      return doc.bra_ent_id === userId
     }
   })
   branchOffice.deny({
     update: function(userId, doc, fields, modifier){
-      return _.contains(fields, 'bra_ent_id');
+      return _.contains(fields, 'bra_ent_id')
     }
   })
 }

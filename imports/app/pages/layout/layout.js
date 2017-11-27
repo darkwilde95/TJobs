@@ -1,10 +1,15 @@
 import { Session } from 'meteor/session'
+import { Tracker } from 'meteor/tracker'
 import { Template } from 'meteor/templating'
 import { ReactiveVar } from 'meteor/reactive-var'
 
 import './layout.html'
 
 var doSearch = new ReactiveVar(false)
+
+Tracker.autorun(function(){
+  doSearch.set(Session.get('route') == 'searchActivity')
+})
 
 Template.layout.onCreated(function(){
   doSearch.set(false)

@@ -1,5 +1,21 @@
 <template name="offerDetail">
   <div class="container content">
     <h5>{{ job_name }}</h5>
+    <h5>{{ entName job_ent_id}}</h5>
+    <h5>{{ offerLocation job_id_location }}</h5>
+    <h5>{{ job_address }}</h5>
+    <h5>{{ offerDate job_dateTime }}</h5>
+    <h5> ${{ job_salary }}</h5>
+    <ol>
+      {{ #each job_requirements }}
+        <li>{{ this }}</li>
+      {{ /each }}
+    </ol>
+    <p>{{ job_description }}</p>
+    {{ #if alReadyApply }}
+      <button id="cancel" name="button">Cancelar</button>
+    {{ else }}
+      <button id="apply" name="button">Aplicar</button>
+    {{ /if }}
   </div>
 </template>

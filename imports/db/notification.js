@@ -19,15 +19,15 @@ if(Meteor.isServer){
 
   notification.allow({
     update: function(userId, doc, fields, modifier){
-      return doc.not_userId === userId && !doc.not_seen;
+      return doc.not_userId === userId && !doc.not_seen
     },
     remove: function(userId, doc){
-      return doc.not_userId === userId;
+      return doc.not_userId === userId
     }
   })
   notification.deny({
     update: function(userId, doc, fields, modifier){
-      return _.contains(fields, 'not_userId');
+      return _.contains(fields, 'not_userId')
     }
   })
 }

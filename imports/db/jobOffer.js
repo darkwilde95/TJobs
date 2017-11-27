@@ -34,18 +34,18 @@ if(Meteor.isServer){
   })
   jobOffer.allow({
     insert: function(userId, doc){
-      return userId && doc.job_ent_id === userId;
+      return userId && doc.job_ent_id === userId
     },
     update: function(userId, doc, fields, modifier){
-      return doc.job_ent_id === userId;
+      return doc.job_ent_id === userId
     },
     remove: function(userId, doc){
-      return doc.job_ent_id === userId;
+      return doc.job_ent_id === userId
     }
   })
   jobOffer.deny({
     update: function(userId, doc, fields, modifier){
-      return _.contains(fields, 'job_ent_id');
+      return _.contains(fields, 'job_ent_id')
     }
   })
 }

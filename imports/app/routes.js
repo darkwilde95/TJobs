@@ -132,6 +132,7 @@ Router.route('/offer/:offerId', {
   subscriptions: function(){
     this.subscribe('City').wait()
     this.subscribe('EnterpriseNames').wait()
+    this.subscribe('OfferApplies', null).wait()
     this.subscribe('JobOffer', this.params.offerId).wait()
   },
   onBeforeAction: function(){

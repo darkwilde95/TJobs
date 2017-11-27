@@ -18,18 +18,18 @@ if(Meteor.isServer){
   })
   study.allow({
     insert: function(userId, doc){
-      return userId && doc.stu_use_id === userId;
+      return userId && doc.stu_use_id === userId
     },
     update: function(userId, doc, fields, modifier){
-      return doc.stu_use_id === userId;
+      return doc.stu_use_id === userId
     },
     remove: function(userId, doc){
-      return doc.stu_use_id === userId;
+      return doc.stu_use_id === userId
     }
   })
   study.deny({
     update: function(userId, doc, fields, modifier){
-      return _.contains(fields, 'stu_use_id');
+      return _.contains(fields, 'stu_use_id')
     }
   })
 }
