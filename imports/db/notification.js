@@ -5,6 +5,7 @@ var notification = new Mongo.Collection('notification',{idGeneration: 'STRING'})
 
 notification.schema = new SimpleSchema({
   not_userId: {type: String},
+  not_offerId: {type: String},
   not_seen: {type: Boolean},
   not_infomation: {type: String},
   not_dateTime: {type: Number},
