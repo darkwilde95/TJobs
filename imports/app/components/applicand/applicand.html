@@ -1,3 +1,10 @@
 <template name="applicand">
-  <h5>Soy un candidato a esta oferta</h5>
+  <img src="/img/noImageProfile.svg" alt="" class="circle">
+  <span class="title">{{ profile.name }}</span>
+  <p>{{ profile.email }}<br>
+     {{ profile.number }}
+  </p>
+  <a href="#!" class="secondary-content secundary-color-text">
+    <i class="material-icons">&#xE853;</i>
+  </a>
 </template>

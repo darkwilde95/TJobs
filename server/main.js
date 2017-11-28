@@ -12,11 +12,12 @@ Meteor.startup(function(){
   }
 })
 
-Meteor.publish('EnterpriseNames', function(){
+Meteor.publish('Profiles', function(typeToShow){
   var fields = {
-    'profile.name': true
+    'emails.address': true,
+    'profile': true
   }
-  return Meteor.users.find({ 'profile.typeProfile': 'enterprise'}, {fields: fields})
+  return Meteor.users.find({ 'profile.typeProfile': typeToShow}, {fields: fields})
 })
 
 

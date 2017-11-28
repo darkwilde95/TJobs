@@ -1,12 +1,16 @@
 <template name="applicandsOffer">
-  <ul class="collection-with-header">
-    <li class="collection-header"><h5>{{ item.job_name }}</h5></li>
+  <ul class="collection with-header">
+    <li class="collection-header">
+      <a href="#" class="black-text"><h5>{{ item.job_name }}</h5></a>
+    </li>
     {{ #if hasApplicands item._id }}
       {{ #each a in applicands item._id }}
-        <li class="collection-item">{{ >applicand item2=a }}</li>
+        <li class="collection-item avatar">
+          <a href="#" class="black-text">{{ >applicand item=a.off_userId }}</a>
+        </li>
       {{ /each }}
     {{ else }}
-      <li>No hay candidatos para esta oferta</li>
+      <li class="collection-item">No hay candidatos para esta oferta</li>
     {{ /if }}
   </ul>
 </template>

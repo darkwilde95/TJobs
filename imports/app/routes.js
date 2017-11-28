@@ -76,11 +76,12 @@ Router.route('/main', {
     if(user){
       if(user.profile.typeProfile == 'user'){
         this.subscribe('JobOffer', null).wait()
-        this.subscribe('EnterpriseNames').wait()
+        this.subscribe('Profiles', 'enterprise').wait()
         this.subscribe('Job', Meteor.userId()).wait()
         this.subscribe('Study', Meteor.userId()).wait()
         this.subscribe('Notification', null).wait()
       }else{
+        this.subscribe('Profiles', 'user').wait()
         this.subscribe('OfferApplies', Meteor.userId()).wait()
         this.subscribe('BranchOffice', Meteor.userId()).wait()
         this.subscribe('JobOfferEnterprise', Meteor.userId()).wait()
@@ -134,8 +135,8 @@ Router.route('/offer/:offerId', {
   },
   subscriptions: function(){
     this.subscribe('City').wait()
-    this.subscribe('EnterpriseNames').wait()
     this.subscribe('OfferApplies', null).wait()
+    this.subscribe('Profiles', 'enterprise').wait()
     this.subscribe('JobOffer', this.params.offerId).wait()
   },
   onBeforeAction: function(){

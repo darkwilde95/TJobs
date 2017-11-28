@@ -9,7 +9,7 @@ Template.applicandsOffer.helpers({
     return (aux) ? aux.count() > 0 : false
   },
   applicands: function(offerId){
-    var aux = OfferApply.find({off_offerId: offerId})
-    return (aux) ? OfferApply.find({off_offerId: offerId}) : false
+    var aux = OfferApply.find({off_offerId: offerId}, {fields: {off_userId: true}})
+    return (aux) ? aux : false
   }
 })
