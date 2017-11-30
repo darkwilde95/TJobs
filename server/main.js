@@ -15,7 +15,9 @@ Meteor.startup(function(){
 Meteor.publish('Profiles', function(typeToShow){
   var fields = {
     'emails.address': true,
-    'profile': true
+    'profile.name': true,
+    'profile.location': true,
+    'profile.number': true,    
   }
   return Meteor.users.find({ 'profile.typeProfile': typeToShow}, {fields: fields})
 })

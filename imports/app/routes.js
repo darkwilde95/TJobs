@@ -127,6 +127,7 @@ Router.route('/main', {
     }
   }
 })
+
 Router.route('/offer/:offerId', {
   name:'offerActivity',
   layoutTemplate: 'layout',
@@ -152,7 +153,7 @@ Router.route('/offer/:offerId', {
         this.render()
       }else{
         this.redirect('mainActivity')
-      }  
+      }
     }else{
       this.render('loading')
     }
@@ -171,7 +172,7 @@ Router.route('/search', {
   },
   subscriptions: function(){
     this.subscribe('City').wait()
-    this.subscribe('EnterpriseNames').wait()
+    this.subscribe('Profiles', 'enterprise').wait()
     this.subscribe('JobOfferSearch', this.params.query.q).wait()
   },
   onBeforeAction: function(){
@@ -199,5 +200,36 @@ Router.route('/search', {
       offerMatch: r,
       hasOffers: r.count() > 0
     }
+  }
+})
+
+Router.route('/profile/:profileId', {
+  name: 'profileActivity',
+  layoutTemplate: 'layout',
+  yieldRegions: {
+    'search': { to: 'main'}
+  },
+  subscriptions: function(){
+    var user = Meteor.user()
+    if(user){
+      if(user.profile.typeProfile == 'user'){
+        this.subscribe('Profiles', 'enterprise').wait()
+        this.subscribe('BranchOffice', this.params.profileId).wait()
+      }else{
+        this.subscribe('Profiles', 'user').wait()
+        this.subscribe('Job', this.params.profileId).wait()
+        this.subscribe('Study', this.params.profileId).wait()
+      }
+    }
+    this.subscribe('City').wait()
+  },
+  onBeforeAction: function(){
+
+  },
+  action: function(){
+
+  },
+  data: function(){
+
   }
 })
