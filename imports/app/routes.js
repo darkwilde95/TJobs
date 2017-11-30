@@ -148,7 +148,11 @@ Router.route('/offer/:offerId', {
   },
   action: function(){
     if(this.ready()){
-      this.render()
+      if(JobOffer.findOne({_id: this.params.offerId})){
+        this.render()
+      }else{
+        this.redirect('mainActivity')
+      }  
     }else{
       this.render('loading')
     }
