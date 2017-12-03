@@ -207,7 +207,7 @@ Router.route('/profile/:profileId', {
   name: 'profileActivity',
   layoutTemplate: 'layout',
   yieldRegions: {
-    'search': { to: 'main'}
+    'profile': { to: 'main'}
   },
   subscriptions: function(){
     var user = Meteor.user()
@@ -224,10 +224,10 @@ Router.route('/profile/:profileId', {
     this.subscribe('City').wait()
   },
   onBeforeAction: function(){
-
+    this.next()
   },
   action: function(){
-
+    this.render()
   },
   data: function(){
 

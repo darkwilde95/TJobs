@@ -1,5 +1,6 @@
 import './job/job'
 import './study/study'
+import './profile/profile'
 import './applicand/applicand'
 import './offerResume/offerResume'
 import './branchOffice/branchOffice'
